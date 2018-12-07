@@ -1,41 +1,3 @@
-/*------------------------------------------------------------------
-Project:  
-Version:  
-Last change:  
-Assigned to:  Le Xuan Bach
-Primary use:  Company
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[LAYOUT]
-
-* body
-  + Header / header
-  + Page Content / .page-content .name-page
-        + Section Layouts / section .name-section
-        ...
-  + Footer / footer
-
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[COLOR CODES]
-
-# Text Color      :  
-# Primary Color 01:  
-# Primary Color 02:   
-# Primary Color 03:  
-
-------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[TYPOGRAPHY]
-
-Body            : 16px/1.6 '', Arial, sans-serif;
-Title           : 18px/1.6 '', Arial, sans-serif;
-Paragrap        : 18px/1.6 '', Arial, sans-serif;
-Input, textarea : 14px/1.6 '', Arial, sans-serif;
--------------------------------------------------------------------*/
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -3329,4 +3291,80 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
 
+}
+
+/* login */
+
+.center{margin: 0 auto}
+.remember input, .remember label{ display: inline-block}
+.remember input:focus{
+  border: 1px solid #e6e6e6;
+}
+
+/* Customize the label (the container) */
+.remember {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.remember input {
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.remember:hover input ~ .checkmark {
+  background-color: #fff;
+}
+
+/* When the checkbox is checked, add a blue background */
+/* .remember input:checked ~ .checkmark:after {
+  border: solid #e6e6e6;
+} */
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.remember input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.remember .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid #6c7ae0;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

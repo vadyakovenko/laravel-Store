@@ -3368,3 +3368,15 @@ input.num-product::-webkit-inner-spin-button {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.error {
+  border: 1px solid #f74877 !important;
+}
+
+.error-message {
+  position: absolute;
+  left: 0;
+  top: -20px;
+  color: #f74877;
+  font-size: 13px;
+}

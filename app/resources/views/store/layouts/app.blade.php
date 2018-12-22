@@ -88,6 +88,14 @@
 							Help & FAQs
 						</a>
 					</li>
+					@if(\Auth::check())
+						<li class="p-b-13">
+							<form method="POST" action="{{route('logout')}}">
+								@csrf
+								<button class="stext-102 cl2 hov-cl1 trans-04" type="submit">Выход</button>							
+							</form>
+						</li>
+					@endif
 				</ul>
 
 				<div class="sidebar-gallery w-full p-tb-30">

@@ -53,6 +53,13 @@ class LoginController extends Controller
         return redirect()->route('login')->with('error', 'Неверный email или пароль! Попробуйте еще раз!');
     }
 
+    public function logout(Request $request)
+    {
+        Auth::guard()->logout();
+        $request->session()->regenerate();
+        return redirect()->route('home');
+    }
+
     
     protected function username()
     {

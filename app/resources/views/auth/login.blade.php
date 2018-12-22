@@ -1,73 +1,54 @@
-@extends('layouts.app')
+@extends('store.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <section class="bg0 p-b-116">
+		<div class="container">
+			<div class="flex-w flex-tr">
+                @if(session('success'))
+                    <div class="alert alert-success text-center">
+                            {{session('success')}}
+                    </div> 
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger text-center">
+                            {{session('error')}}
+                    </div> 
+                @endif
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md center">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{route('login')}}" >
                         @csrf
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							ВХОД
+						</h4>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="bor8 m-b-20 how-pos4-parent {{!$errors->has('email') ? :'error'}}">
+                            @if($errors->has('email'))
+                                <span class="error-message">{{$errors->first('email')}}</span>
+                            @endif
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" value="{{old('email')}}" placeholder="Email">
+							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+						</div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+						<div class="bor8 m-b-20 how-pos4-parent {{!$errors->has('password') ? :'error'}}">
+                            @if($errors->has('password'))
+                                <span class="error-message">{{$errors->first('password')}}</span>
+                            @endif
+                            <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password" name="password" placeholder="Password">
+                            <img class="how-pos4 pointer-none" src="images/icons/icon-password.png" alt="ICON">
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <label class="remember">Remember me
+                            <input name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+                            <span class="checkmark"></span>
+                        </label>
+                        
+						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>	
 @endsection

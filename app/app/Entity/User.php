@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
 
     public const STATUS_WAIT = 'wait';

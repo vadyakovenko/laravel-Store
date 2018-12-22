@@ -12,8 +12,6 @@ use App\UseCases\Auth\RegisterService;
 
 class RegisterController extends Controller
 {
- 
-
     use RegistersUsers;
 
 
@@ -53,7 +51,7 @@ class RegisterController extends Controller
                 ->with('success', 'Аккаунт успешно активирован!');
         } catch (\DomainExeption $e) {
             return redirect()->route('login')
-                ->with('error', $e->gerMessage());
+                ->with('error', $e->getMessage());
         }
     }
 

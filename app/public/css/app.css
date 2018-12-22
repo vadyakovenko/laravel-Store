@@ -3392,3 +3392,7 @@ input.num-product::-webkit-inner-spin-button {
   color: #f74877;
   font-size: 13px;
 }
+
+.alert {
+  width:100%;
+}

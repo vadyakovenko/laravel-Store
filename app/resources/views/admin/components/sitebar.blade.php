@@ -23,12 +23,9 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview  active">
-        <a href="{{route('admin.dashboard')}}">
-            <i class="fa fa-dashboard"></i> <span>Админ-панель</span>
-        </a>
+        <li class="active">
+        <a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Админ-панель</span></a>
         </li>
-        <li><a href="#"><i class="fa fa-sticky-note-o"></i> <span>Посты</span></a></li>
         <li><a href="#"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
         <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
         <li>
@@ -39,6 +36,7 @@
             </span>
         </a>
         </li>
+        <li><a href="{{route('admin.provider.index')}}"><i class="fa fa-cart-arrow-down"></i> <span>Поставщики</span></a></li>
         <li><a href="{{route('admin.user.index')}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
         <li><a href="#"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li>
     </ul>

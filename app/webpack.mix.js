@@ -46,4 +46,10 @@ mix.styles([
       // 'resources/vendor/perfect-scrollbar/perfect-scrollbar.css'
    ], 'public/css/app.css');
 
+   mix.styles([
+      'resources/admin/css/custom.css'
+
+   ], 'public/css/custom.css');
+
 mix.copy('resources/fonts', 'public/fonts');
+mix.copy('resources/admin', 'public/admin');

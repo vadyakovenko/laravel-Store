@@ -17,13 +17,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/admin/dist/css/skins/_all-skins.min.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="/admin/css/custom.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -198,6 +192,12 @@
     <!-- Main content -->
    
     <section class="content">
+        @if(session("success"))
+          <div class="alert alert-success text-center">{{session("success")}}</div>
+        @endif
+        @if(session("error"))
+          <div class="alert alert-error text-center">{{session("error")}}</div>
+        @endif
         @yield('content')
     </section>
     <!-- /.content -->
@@ -421,6 +421,7 @@
 <script src="/admin/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/admin/dist/js/demo.js"></script>
+@yield('js')
 </body>
 
 <!-- Mirrored from almsaeedstudio.com/themes/AdminLTE/pages/examples/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Dec 2016 15:13:35 GMT -->

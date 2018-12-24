@@ -88,7 +88,7 @@
 							Help & FAQs
 						</a>
 					</li>
-					@if(\Auth::check())
+					@if($CurrentUser)
 						<li class="p-b-13">
 							<form method="POST" action="{{route('logout')}}">
 								@csrf

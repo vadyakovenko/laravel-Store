@@ -3,7 +3,7 @@
 namespace App\UseCases\Auth;
 
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Entity\User;
+use App\Entity\User\User;
 use Illuminate\Contracts\Mail\Mailer;
 use App\Mail\Auth\VerifyMail;
 

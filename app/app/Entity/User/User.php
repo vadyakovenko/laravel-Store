@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\User;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -48,6 +48,10 @@ class User extends Authenticatable
         ]);
     }
 
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name; 
+    }
     public function isWait()
     {
         return $this->status == self::STATUS_WAIT;

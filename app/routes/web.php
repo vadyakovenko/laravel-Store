@@ -6,4 +6,6 @@ Route::get('verify/{token}', 'Auth\RegisterController@verify')->name('register.v
 
 Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin' ], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::resource('user', 'UserController');
 });

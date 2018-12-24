@@ -5,7 +5,7 @@
         <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-        <p>Vadym Yakovenko</p>
+        <p>{{$CurrentUser->getFullName()}}</p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
     </div>
@@ -39,7 +39,7 @@
             </span>
         </a>
         </li>
-        <li><a href="#"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
+        <li><a href="{{route('admin.user.index')}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
         <li><a href="#"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li>
     </ul>
 </section>

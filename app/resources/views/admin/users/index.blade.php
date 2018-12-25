@@ -34,6 +34,7 @@
             @endforeach
         </tfoot>
       </table>
+      {!!$users->render()!!}
     </div>
     <!-- /.box-body -->
 </div>

@@ -17,7 +17,7 @@ class CreatedProvidersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('phone', 11)->nullable();
+            $table->string('phone', 10)->nullable();
             $table->string('url');
             $table->text('conditions')->nullable();
             $table->text('comment')->nullable();

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Entity\User\User;
 
 class CreateUsersTable extends Migration
 {
@@ -26,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
         });
+        User::createAdmin('Admin', env('ADMIN_EMAIL', 'admin@admin.com'), env('ADMIN_PASSWORD', 'secret'));
     }
 
     /**

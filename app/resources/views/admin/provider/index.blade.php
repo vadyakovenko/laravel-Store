@@ -13,7 +13,7 @@
             <table id="example1" class="table table-bordered">
             <thead>
             <tr>
-                <th>№</th>
+                <th>ID</th>
                 <th>Название</th>
                 <th>Email</th>
                 <th>Телефон</th>
@@ -24,9 +24,9 @@
             </tr>
             </thead>
             <tbody>
-                @foreach($providers as $k=>$provider)
+                @foreach($providers as $provider)
                     <tr>
-                        <td>{{$k+1}}</td>
+                        <td>{{$provider->id}}</td>
                         <td>{{$provider->name}}</td>
                         <td>{{$provider->email}}</td>
                         <td>{{$provider->phone}}</td>
@@ -73,7 +73,8 @@
                 @endforeach
             </tfoot>
             </table>
-        </div>
+            {!!$providers->render()!!}
+        </div>  
         <!-- /.box-body -->
     </div>
 @endsection

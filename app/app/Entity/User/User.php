@@ -36,6 +36,26 @@ class User extends Authenticatable
         ]);
     }
 
+    public static function createAdmin(string $name, string $email, string $password)
+    {
+        return static::create([
+            'first_name' => $name,
+            'email' => $email, 
+            'password' => bcrypt($password), 
+            'status' => self::STATUS_ACTIVE,
+            'role' => self::ROLE_ADMIN
+        ]);
+    }
+
+    public static function rolesList(): array
+    {
+        return [
+            self::ROLE_ADMIN,
+            self::ROLE_MANAGER,
+            self::ROLE_USER
+        ];
+    }
+
     public function verify()
     {
         if($this->isActive()) {

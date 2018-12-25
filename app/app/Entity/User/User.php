@@ -68,17 +68,27 @@ class User extends Authenticatable
         ]);
     }
 
-    public function getFullName()
+    public function getFullName(): string
     {
         return $this->first_name . ' ' . $this->last_name; 
     }
-    public function isWait()
+    public function isWait(): bool
     {
         return $this->status == self::STATUS_WAIT;
     }
 
-    public function isActive()
+    public function isActive(): bool
     {
         return $this->status == self::STATUS_ACTIVE;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role == self::ROLE_ADMIN;
+    }
+
+    public function isManager(): bool
+    {
+        return $this->role == self::ROLE_MANAGER;
     }
 }

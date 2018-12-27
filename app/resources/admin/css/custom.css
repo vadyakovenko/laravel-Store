@@ -18,3 +18,7 @@
     background: transparent;
     color: #337ab7;
 }
+
+.inline-block{
+    display: inline-block;
+}

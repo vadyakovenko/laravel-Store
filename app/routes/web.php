@@ -9,4 +9,5 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
 
     Route::resource('user', 'UserController');
     Route::resource('provider', 'ProviderController')->except('show');
+    Route::resource('category', 'CategoryController');
 });

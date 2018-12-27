@@ -26,18 +26,18 @@
         <li class="active">
             <a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Админ-панель</span></a>
         </li>
-        <li><a href="#"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
-        <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
-        <li>
-        <a href="#">
-            <i class="fa fa-commenting"></i> <span>Комментарии</span>
-            <span class="pull-right-container">
-            <small class="label pull-right bg-green">5</small>
-            </span>
-        </a>
-        </li>
+        <li><a href="{{route('admin.category.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
+        {{-- <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li> --}}
+        {{-- <li>
+            <a href="#">
+                <i class="fa fa-commenting"></i> <span>Комментарии</span>
+                <span class="pull-right-container">
+                    <small class="label pull-right bg-green">5</small>
+                </span>
+            </a>
+        </li> --}}
         <li><a href="{{route('admin.provider.index')}}"><i class="fa fa-cart-arrow-down"></i> <span>Поставщики</span></a></li>
         <li><a href="{{route('admin.user.index')}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
-        <li><a href="#"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li>
+        {{-- <li><a href="#"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li> --}}
     </ul>
 </section>

@@ -46,7 +46,7 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         if(!$provider->delete()) {
-            throw new \RuntimeException('Error updating provider!');
+            throw new \RuntimeException('Error deleting provider!');
         }
         return redirect()->route('admin.provider.index')->with('success', 'Поставщик успешно удален!');
     }

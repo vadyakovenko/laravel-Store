@@ -62,7 +62,7 @@
                         </td>
                         <td>
                             <a href="{{route('admin.provider.edit', $provider)}}" class="fa fa-pencil"></a> 
-                            <form method="POST" action="{{route('admin.provider.destroy', $provider)}}">
+                            <form class="inline-block" method="POST" action="{{route('admin.provider.destroy', $provider)}}">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" onclick="return confirm('Действительно удалить?')" class="delete-btn"><i class="fa fa-remove"></i></button>

@@ -12,12 +12,12 @@ class ProviderController extends Controller
     public function index()
     {
         $providers = Provider::paginate(20);
-        return view('admin.provider.index', compact('providers'));
+        return view('admin.providers.index', compact('providers'));
     }
 
     public function create()
     {
-        return view('admin.provider.create');
+        return view('admin.providers.create');
     }
 
 
@@ -26,12 +26,12 @@ class ProviderController extends Controller
         if(!Provider::create($request->except('_token'))) {
             throw new \RuntimeException('Error saving new provider!');
         }
-        return redirect()->route('admin.provider.index')->with('success', 'Новый поставщик успешно добавлен!');
+        return redirect()->route('admin.providers.index')->with('success', 'Новый поставщик успешно добавлен!');
     }
 
     public function edit(Provider $provider)
     {
-        return view('admin.provider.edit', ['provider' => $provider]);
+        return view('admin.providers.edit', ['provider' => $provider]);
     }
 
 
@@ -40,7 +40,7 @@ class ProviderController extends Controller
         if(!$provider->update($request->except('_token'))) {
             throw new \RuntimeException('Error updating provider!');
         }
-        return redirect()->route('admin.provider.index')->with('success', 'Информиция о поставщике успешно обновлена!');
+        return redirect()->route('admin.providers.index')->with('success', 'Информиция о поставщике успешно обновлена!');
     }
 
     public function destroy(Provider $provider)
@@ -48,6 +48,6 @@ class ProviderController extends Controller
         if(!$provider->delete()) {
             throw new \RuntimeException('Error deleting provider!');
         }
-        return redirect()->route('admin.provider.index')->with('success', 'Поставщик успешно удален!');
+        return redirect()->route('admin.providers.index')->with('success', 'Поставщик успешно удален!');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="box">
-        <form action="{{route('admin.category.update', $category)}}" method="POST">
+        <form action="{{route('admin.categories.update', $category)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="box-header with-border">
@@ -33,14 +33,14 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input {{$category->is_active ? 'checked':''}} name="is_active" type="checkbox"> Активировать
+                            <input {{$category->is_active ? 'checked':''}} name="is_active" type="checkbox"> <strong>Активировать</strong>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="box-footer">
-                <a href="{{route('admin.category.index')}}" class="btn btn-default">Назад</a>
-                <button type="submit" class="btn btn-success pull-right">Сохранить</button>
+                <a href="{{route('admin.categories.index')}}" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</a>
+                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить</button>
             </div>
         </form>
     </div>

@@ -31,7 +31,7 @@ class CategoryController extends Controller
             'is_active' => $request['is_active'] ? 1 : 0,
         ]);
 
-        return redirect()->route('admin.category.index')->with('success', 'Новая категория успешно добавлена!');
+        return redirect()->route('admin.categories.index')->with('success', 'Новая категория успешно добавлена!');
     }
 
     public function show(Category $category)
@@ -53,7 +53,7 @@ class CategoryController extends Controller
             'parent_id' => $request['parent_id'],
             'is_active' => $request['is_active'] ? 1 : 0,
         ]);
-        return redirect()->route('admin.category.index')->with('success', 'Категория успешно обновлена!');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно обновлена!');
     }
 
     public function destroy(Category $category)
@@ -61,6 +61,38 @@ class CategoryController extends Controller
         if(!$category->delete()) {
             throw new \RuntimeException('Error deleting category!');
         }
-        return redirect()->route('admin.category.index')->with('success', 'Категория успешно удалена!');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена!');
+    }
+
+    public function first(Category $category)
+    {
+        if ($first = $category->siblings()->defaultOrder()->first()) {
+            $category->insertBeforeNode($first);
+        }
+
+        return redirect()->route('admin.categories.index');
+    }
+
+    public function up(Category $category)
+    {
+        $category->up();
+        
+        return redirect()->route('admin.categories.index');
+    }
+
+    public function down(Category $category)
+    {
+        $category->down();
+
+        return redirect()->route('admin.categories.index');
+    }
+
+    public function last(Category $category)
+    {
+        if ($last = $category->siblings()->defaultOrder('desc')->first()) {
+            $category->insertAfterNode($last);
+        }
+
+        return redirect()->route('admin.categories.index');
     }
 }

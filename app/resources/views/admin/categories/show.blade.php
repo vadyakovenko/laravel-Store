@@ -7,9 +7,9 @@
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">            
-                        <a href="{{route('admin.category.index')}}" class="btn btn-default">Назад</a>
-                        <a href={{route('admin.category.edit', $category)}} type="submit" class="btn btn-success">Изменить</a>
-                        <form class="inline-block" method="POST" action="{{route('admin.category.destroy', $category)}}">
+                        <a href="{{route('admin.categories.index')}}" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</a>
+                        <a href={{route('admin.categories.edit', $category)}} type="submit" class="btn btn-success"><i class="fa fa fa-pencil"></i> Изменить</a>
+                        <form class="inline-block" method="POST" action="{{route('admin.categories.destroy', $category)}}">
                             @csrf
                             @method('delete')
                             <button type="submit" onclick="return confirm('Удаление родительской категории влечет за собой удаление всех дочерних категорий! Действительно удалить?')" class="btn btn-danger">Удалить</button>

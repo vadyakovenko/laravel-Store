@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="box">
-        <form method="POST" action="{{route('admin.provider.update', $provider)}}">
+        <form method="POST" action="{{route('admin.providers.update', $provider)}}">
             @csrf
             @method('PUT')
             <div class="box-header with-border">
@@ -48,8 +48,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <a href="{{route('admin.provider.index')}}" class="btn btn-default">Назад</a>
-                <button type="submit" class="btn btn-success pull-right">Изменить</button>
+                <a href="{{route('admin.providers.index')}}" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</a>
+                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"> Сохранить</button>
             </div>
             <!-- /.box-footer-->
         </form>

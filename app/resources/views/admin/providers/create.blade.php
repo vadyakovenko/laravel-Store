@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="box">
-        <form method="POST" action="{{route('admin.provider.store')}}">
+        <form method="POST" action="{{route('admin.providers.store')}}">
             @csrf
             <div class="box-header with-border">
                 <h3 class="box-title">Добавить поставщика</h3>
@@ -47,8 +47,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-default">Назад</button>
-                <button type="submit" class="btn btn-success pull-right">Добавить</button>
+                <button class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</button>
+                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить</button>
             </div>
             <!-- /.box-footer-->
         </form>

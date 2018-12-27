@@ -8,7 +8,7 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="form-group">
-            <a href="{{route('admin.provider.create')}}" class="btn btn-success">Добавить</a>
+            <a href="{{route('admin.providers.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Добавить</a>
             </div>
             <table id="example1" class="table table-bordered">
             <thead>
@@ -61,8 +61,8 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('admin.provider.edit', $provider)}}" class="fa fa-pencil"></a> 
-                            <form class="inline-block" method="POST" action="{{route('admin.provider.destroy', $provider)}}">
+                            <a href="{{route('admin.providers.edit', $provider)}}" class="fa fa-pencil"></a> 
+                            <form class="inline-block" method="POST" action="{{route('admin.providers.destroy', $provider)}}">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" onclick="return confirm('Действительно удалить?')" class="delete-btn"><i class="fa fa-remove"></i></button>

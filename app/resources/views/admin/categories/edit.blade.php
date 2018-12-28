@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.categories.edit', $category) }}
+@endsection
+
 @section('content')
     <div class="box">
         <form action="{{route('admin.categories.update', $category)}}" method="POST">

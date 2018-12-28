@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.providers.edit', $provider) }}
+@endsection
+
 @section('content')
     <div class="box">
         <form method="POST" action="{{route('admin.providers.update', $provider)}}">

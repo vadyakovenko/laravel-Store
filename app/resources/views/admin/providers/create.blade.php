@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.providers.create') }}
+@endsection
+
 @section('content')
     <div class="box">
         <form method="POST" action="{{route('admin.providers.store')}}">
@@ -47,7 +51,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</button>
+                <a href={{route('admin.providers.index')}} class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</a>
                 <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить</button>
             </div>
             <!-- /.box-footer-->

@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('dashboard') }}
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-lg-3 col-xs-6">

@@ -1,9 +1,13 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.providers.index') }}
+@endsection
+
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Пользователи</h3>
+            <h3 class="box-title">Поставщики</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">

@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.categories.index') }}
+@endsection
+
 @section('content')
 <div class="box">
         <div class="box-header">

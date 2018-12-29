@@ -10,7 +10,7 @@
             @csrf
             @method('PUT')
             <div class="box-header with-border">
-                <h3 class="box-title">Добавить поставщика</h3>
+                <h3 class="box-title">Редактировать поставщика <strong>{{$provider->name}}</strong></h3>
             </div>
             <div class="box-body">
                 <div class="col-md-6">
@@ -53,7 +53,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <a href="{{route('admin.providers.index')}}" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</a>
-                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"> Сохранить</button>
+                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить</button>
             </div>
             <!-- /.box-footer-->
         </form>

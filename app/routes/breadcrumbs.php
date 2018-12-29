@@ -3,6 +3,7 @@
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 use App\Entity\Category;
 use App\Entity\Provider\Provider;
+use App\Entity\Tag;
 
 Breadcrumbs::for('dashboard', function (Crumbs $crumbs) {
     $crumbs->push('<i class="fa fa-dashboard"></i> Dashboard', route('admin.dashboard'));
@@ -52,6 +53,26 @@ Breadcrumbs::for('admin.providers.show', function(Crumbs $crumbs, Provider $prov
 Breadcrumbs::for('admin.providers.edit', function(Crumbs $crumbs, Provider $provider) {
     $crumbs->parent('admin.providers.show', $provider);
     $crumbs->push('Edit', route('admin.providers.edit', $provider));
+});
+
+Breadcrumbs::for('admin.tags.index', function(Crumbs $crumbs) {
+    $crumbs->parent('dashboard');
+    $crumbs->push('Tags', route('admin.tags.index'));
+});
+
+Breadcrumbs::for('admin.tags.create', function(Crumbs $crumbs) {
+    $crumbs->parent('admin.tags.index');
+    $crumbs->push('Create', route('admin.tags.create'));
+});
+
+Breadcrumbs::for('admin.tags.show', function(Crumbs $crumbs, Tag $tag) {
+    $crumbs->parent('admin.tags.index');
+    $crumbs->push($tag->name, route('admin.tags.index'));
+});
+
+Breadcrumbs::for('admin.tags.edit', function(Crumbs $crumbs, Tag $tag) {
+    $crumbs->parent('admin.tags.show', $tag);
+    $crumbs->push('Edit', route('admin.tags.edit', $tag));
 });
 
 Breadcrumbs::for('admin.users.index', function(Crumbs $crumbs) {

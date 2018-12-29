@@ -10,7 +10,7 @@
             @csrf
             @method('PUT')
             <div class="box-header with-border">
-                <h3 class="box-title">Изменить категорию категорию <strong>{{$category->name}}</strong></h3>
+                <h3 class="box-title">Редактировать категорию <strong>{{$category->name}}</strong></h3>
             </div>
             <div class="box-body">
                 <div class="col-md-6">

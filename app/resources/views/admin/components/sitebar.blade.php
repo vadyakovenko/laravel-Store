@@ -22,12 +22,12 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">Меню</li>
         <li class="active">
             <a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Админ-панель</span></a>
         </li>
         <li><a href="{{route('admin.categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
-        {{-- <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li> --}}
+        <li><a href="{{route('admin.tags.index')}}"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
         {{-- <li>
             <a href="#">
                 <i class="fa fa-commenting"></i> <span>Комментарии</span>

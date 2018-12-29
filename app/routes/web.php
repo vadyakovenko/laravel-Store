@@ -18,5 +18,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
         Route::post('/down', 'CategoryController@down')->name('down');
         Route::post('/last', 'CategoryController@last')->name('last');
     });
+
+    Route::resource('tags', 'TagController')->except('show');
     
 });

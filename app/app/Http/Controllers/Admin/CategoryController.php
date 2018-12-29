@@ -36,13 +36,13 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return view('admin.categories.show', ['category' => $category]);
+        return view('admin.categories.show', compact('category'));
     }
 
     public function edit(Category $category)
     {
         $categories = Category::treeWithDepth();
-        return view('admin.categories.edit', ['category' => $category, 'categories' => $categories]);
+        return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     public function update(CategoryUpdateRequest $request, Category $category)

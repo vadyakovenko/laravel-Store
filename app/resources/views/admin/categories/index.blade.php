@@ -20,6 +20,7 @@
                     <th>НАЗВАНИЕ</th>
                     <th>Slug</th>
                     <th>Состояние</th>
+                    <th>Сортировать</th>
                     <th>Действия</th>
                 </tr>
             </thead>
@@ -39,12 +40,6 @@
                                     <td><span class="label bg-red">draft</span></td>
                                 @endif
                             <td>
-                                <a href="{{route('admin.categories.edit', $category)}}" title="Изменить категорию" class="fa fa-pencil"></a> 
-                                <form class="inline-block" method="POST" action="{{route('admin.categories.destroy', $category)}}">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" title="Удалить категорию" onclick="return confirm('Удаление родительской категории влечет за собой удаление всех дочерних категорий! Действительно удалить?')" class="delete-btn"><i class="fa fa-remove"></i></button>
-                                </form>
                                 <form class="inline-block" method="POST" action="{{route('admin.categories.first', $category)}}">
                                     @csrf
                                     <button type="submit" class="move-btn" title="Наверх уровня"><i class="fa fa-angle-double-up"></i></button>
@@ -60,6 +55,14 @@
                                 <form class="inline-block" method="POST" action="{{route('admin.categories.last', $category)}}">
                                     @csrf
                                     <button type="submit" class="move-btn" title="Вниз уровня"><i class="fa fa-angle-double-down"></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="{{route('admin.categories.edit', $category)}}" title="Изменить категорию" class="fa fa-pencil"></a> 
+                                <form class="inline-block" method="POST" action="{{route('admin.categories.destroy', $category)}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" title="Удалить категорию" onclick="return confirm('Удаление родительской категории влечет за собой удаление всех дочерних категорий! Действительно удалить?')" class="delete-btn"><i class="fa fa-remove"></i></button>
                                 </form>
                             </td>
                         </tr>

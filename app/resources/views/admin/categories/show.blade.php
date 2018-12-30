@@ -28,14 +28,14 @@
                     </ul>
                 </div>
             </div>
-            {{-- <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="https://fakeimg.pl/420x320/ff0000,128/333333,255/?text=Sample&font=lobster" ">
-                    <div class="caption">
-                        <h4>Картинка категории</h4>
-                    </div>
-                </div>
-            </div> --}}
+            <div class="col-md-6">
+                <h3>Сео атрибуты</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Title: <strong>{{$category->meta->title}}</strong></li>
+                    <li class="list-group-item">Description: <strong>{{$category->meta->description}}</strong></li>
+                    <li class="list-group-item">Keywords: <strong>{{$category->meta->keywords}}</strong></li>
+                </ul>
+            </div>
         </div>
     </div>
 @endsection

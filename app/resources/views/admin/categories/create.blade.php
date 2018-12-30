@@ -39,6 +39,23 @@
                         </label>
                     </div> 
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group {{!$errors->has('seo_title') ? : 'has-error'}}">
+                        <label for="seo_title">Title</label>
+                        <input required type="text" class="form-control" id="seo_title" name="seo_title" value="{{ old('seo_title') }}" placeholder="Title">
+                        <span class="help-block">{{$errors->first('seo_title')}}</span>
+                    </div>
+                    <div class="form-group {{!$errors->has('seo_description') ? : 'has-error'}}">
+                        <label for="seo_description">Description</label>
+                        <textarea id="seo_description", name="seo_description" class="form-control" placeholder="Description" >{{ old('seo_description')}}</textarea>
+                        <span class="help-block">{{$errors->first('seo_description')}}</span>
+                    </div>
+                    <div class="form-group {{!$errors->has('seo_keywords') ? : 'has-error'}}">
+                        <label for="seo_keywords">Keywords</label>
+                        <textarea id="seo_keywords" name="seo_keywords" class="form-control" placeholder="Keywords" >{{ old('seo_keywords')}}</textarea>
+                        <span class="help-block">{{$errors->first('seo_keywords')}}</span>
+                    </div>
+                </div>
             </div>
             <div class="box-footer">
                 <a href="{{route('admin.categories.index')}}" class="btn btn-default"><i class="fa  fa-arrow-circle-left"></i> Назад</a>

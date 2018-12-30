@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Entity\Provider\Provider;
+use App\Entity\Store\Provider\Provider;
 
 class ProvidersTableSeeder extends Seeder
 {

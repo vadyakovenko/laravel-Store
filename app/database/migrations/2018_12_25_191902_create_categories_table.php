@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->index();
             $table->string('slug');
             $table->boolean('is_active')->default(false);
+            $table->text('seo_json')->nullable();
             NestedSet::columns($table);
 
             $table->unique(['slug', 'parent_id']);

@@ -2,34 +2,38 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Entity\Category;
+use App\Entity\Store\Category;
+use App\UseCases\Store\CategoryService;
 use App\Http\Requests\Categories\CategoryCreateRequest;
 use App\Http\Requests\Categories\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
+    private $category;
+
+    public function __construct(CategoryService $category)
+    {
+        $this->category = $category;
+    }
+
     public function index()
     {
         $categories = Category::treeWithDepth();
+
         return view('admin.categories.index', compact('categories'));
     }
 
     public function create()
     {
         $categories = Category::treeWithDepth();
+
         return view('admin.categories.create', compact('categories'));
     }
 
     public function store(CategoryCreateRequest $request)
     {
-        Category::create([
-            'name' => $request['name'],
-            'slug' => $request['slug'],
-            'parent_id' => $request['parent_id'],
-            'is_active' => $request['is_active'] ? 1 : 0,
-        ]);
+        $this->category->create($request);
 
         return redirect()->route('admin.categories.index')->with('success', 'Новая категория успешно добавлена!');
     }
@@ -42,33 +46,27 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $categories = Category::treeWithDepth();
+
         return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     public function update(CategoryUpdateRequest $request, Category $category)
     {
-        $category->update([
-            'name' => $request['name'],
-            'slug' => $request['slug'],
-            'parent_id' => $request['parent_id'],
-            'is_active' => $request['is_active'] ? 1 : 0,
-        ]);
+        $this->category->update($request, $category);
+
         return redirect()->route('admin.categories.index')->with('success', 'Категория успешно обновлена!');
     }
 
     public function destroy(Category $category)
     {
-        if(!$category->delete()) {
-            throw new \RuntimeException('Error deleting category!');
-        }
+        $this->category->delete($category);
+
         return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена!');
     }
 
     public function first(Category $category)
     {
-        if ($first = $category->siblings()->defaultOrder()->first()) {
-            $category->insertBeforeNode($first);
-        }
+        $this->category->first($category);
 
         return redirect()->route('admin.categories.index');
     }
@@ -76,7 +74,7 @@ class CategoryController extends Controller
     public function up(Category $category)
     {
         $category->up();
-        
+
         return redirect()->route('admin.categories.index');
     }
 
@@ -89,9 +87,7 @@ class CategoryController extends Controller
 
     public function last(Category $category)
     {
-        if ($last = $category->siblings()->defaultOrder('desc')->first()) {
-            $category->insertAfterNode($last);
-        }
+        $this->category->last($category);
 
         return redirect()->route('admin.categories.index');
     }

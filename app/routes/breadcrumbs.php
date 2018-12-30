@@ -1,9 +1,9 @@
 <?php
 
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
-use App\Entity\Category;
-use App\Entity\Provider\Provider;
-use App\Entity\Tag;
+use App\Entity\Store\Category;
+use App\Entity\Store\Provider\Provider;
+use App\Entity\Store\Tag;
 
 Breadcrumbs::for('dashboard', function (Crumbs $crumbs) {
     $crumbs->push('<i class="fa fa-dashboard"></i> Dashboard', route('admin.dashboard'));

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Providers\ProviderRequest;
-use App\Entity\Provider\Provider;
+use App\Entity\Store\Provider\Provider;
 
 class ProviderController extends Controller
 {

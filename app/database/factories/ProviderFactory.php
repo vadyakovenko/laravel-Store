@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Entity\Provider\Provider;
+use App\Entity\Store\Provider\Provider;
 
 $factory->define(Provider::class, function (Faker $faker) {
     return [

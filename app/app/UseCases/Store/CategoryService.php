@@ -4,8 +4,8 @@ namespace App\UseCases\Store;
 
 use App\Entity\Store\Category;
 use App\Entity\Store\MetaData;
-use App\Http\Requests\Categories\CategoryCreateRequest;
-use App\Http\Requests\Categories\CategoryUpdateRequest;
+use App\Http\Requests\Store\Categories\CategoryCreateRequest;
+use App\Http\Requests\Store\Categories\CategoryUpdateRequest;
 
 class CategoryService
 {

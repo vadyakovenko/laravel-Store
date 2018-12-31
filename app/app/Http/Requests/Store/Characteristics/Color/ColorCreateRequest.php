@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Providers;
+namespace App\Http\Requests\Store\Characteristics\Color;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProviderRequest extends FormRequest
+class ColorCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class ProviderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'url' => ['required', 'url'],
-            'email' => ['nullable', 'email']
+            'name' => ['required', 'string', 'unique:products_colors,name'],
+            'value' => ['required', 'string', 'unique:products_colors,value']
         ];
     }
 }

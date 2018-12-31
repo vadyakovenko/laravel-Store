@@ -28,6 +28,19 @@
         </li>
         <li><a href="{{route('admin.categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
         <li><a href="{{route('admin.tags.index')}}"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
+        <li class="treeview">
+            <a href="#">
+              <i class="fa fa-pie-chart"></i>
+              <span>Характеристики</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu" style="display: none;">
+              <li><a href="{{ route('admin.characteristics.colors.index') }}"><i class="fa fa-circle-o"></i> Цвета</a></li>
+              <li><a href="{{ route('admin.characteristics.sizes.index') }}"><i class="fa fa-circle-o"></i> Размеры</a></li>
+            </ul>
+          </li>
         {{-- <li>
             <a href="#">
                 <i class="fa fa-commenting"></i> <span>Комментарии</span>

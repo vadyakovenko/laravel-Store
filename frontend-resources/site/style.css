@@ -1,0 +1,59 @@
+.submenu-trigger {
+    padding: 20px 0;
+}
+.sub-catalog {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    display: none;
+    left: 0;
+    z-index: 3000000;
+}
+
+.submenu-trigger .sub-catalog a {
+    color: rgb(177, 177, 177);
+    font-family: Poppins-light;
+        font-size: 14px;
+        display: block;
+        padding-top: 4px;
+
+}
+
+.submenu-trigger .sub-catalog a:hover {
+    color: rgb(46, 46, 46);
+}
+
+.submenu-trigger a {
+    
+        font-family: Poppins-Medium;
+        font-size: 14px;
+        color: rgb(255, 255, 255);
+        padding: 5px 0px;
+        transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+      
+}
+
+
+.label1::after {
+    top: -8px;
+    right: -16px;
+}
+
+@media (max-width: 1440px) {
+    .submenu-trigger:hover .sub-catalog {
+        display: block;
+        border-bottom: 1px grey solid;
+    }
+
+    .submenu-trigger:hover::before {
+        content: "\25B2";
+        position: absolute;
+        color: rgb(255, 255, 255);
+      top: 68px;
+        right: 45%;
+    }
+}

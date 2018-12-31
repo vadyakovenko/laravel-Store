@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Characteristics;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Entity\Store\Tag;
-use App\Http\Requests\Store\TagRequest;
 
-class TagController extends Controller
+class CharacteristicsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tags.index', compact('tags'));
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        //
     }
 
     /**
@@ -36,10 +33,20 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TagRequest $request)
+    public function store(Request $request)
     {
-        Tag::create($request->validated());
-        return redirect()->route('admin.tags.index')->with('success', 'Тег успешно добавлен!');
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -48,9 +55,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
-        return view('admin.tags.edit', compact('tag'));
+        //
     }
 
     /**
@@ -60,10 +67,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagRequest $request, Tag $tag)
+    public function update(Request $request, $id)
     {
-        $tag->update($request->validated());
-        return redirect()->route('admin.tags.index')->with('success', 'Информация о теге успешно обновленна!');
+        //
     }
 
     /**
@@ -72,9 +78,8 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        $tag->delete();
-        return redirect()->route('admin.tags.index')->with('success', 'Тег успешно удален!');
+        //
     }
 }

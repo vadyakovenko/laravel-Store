@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Entity\Store\Category;
 use App\UseCases\Store\CategoryService;
-use App\Http\Requests\Categories\CategoryCreateRequest;
-use App\Http\Requests\Categories\CategoryUpdateRequest;
+use App\Http\Requests\Store\Categories\CategoryCreateRequest;
+use App\Http\Requests\Store\Categories\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {

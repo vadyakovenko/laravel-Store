@@ -20,5 +20,10 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
     });
 
     Route::resource('tags', 'TagController')->except('show');
+
+    Route::group(['prefix' => 'characteristics', 'as' => 'characteristics.', 'namespace' => 'Characteristics'], function () {
+        Route::resource('colors', 'ColorController')->except('show');
+        Route::resource('sizes', 'SizeController');
+    });
     
 });

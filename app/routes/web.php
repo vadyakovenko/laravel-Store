@@ -25,5 +25,14 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
         Route::resource('colors', 'ColorController')->except('show');
         Route::resource('sizes', 'SizeController');
     });
+
+    Route::resource('products', 'ProductController');
+    Route::group(['prefix' => 'products', 'namespace' => 'Ajax'], function () {
+        Route::post('setsize', 'ProductController@setSize');
+    });
     
+    Route::group(['prefix' => 'parser', 'as' => 'parser.'], function () {
+        Route::get('/', 'ParserController@index')->name('index');
+        Route::get('/start', 'ParserController@start')->name('start');
+    });
 });

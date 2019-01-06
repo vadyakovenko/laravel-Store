@@ -3,6 +3,7 @@
 namespace App\Entity\Store\Characteristics;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Entity\Store\Product\Size as ParserSize;
 
 class Size extends Model
 {
@@ -11,4 +12,9 @@ class Size extends Model
     public $timestamps = false;
 
     protected $table = 'products_sizes';
+
+    public function parserSize()
+    {
+        return $this->belongsTo(ParserSize::class);
+    }
 }

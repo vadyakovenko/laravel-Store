@@ -26,6 +26,8 @@
         <li class="active">
             <a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Админ-панель</span></a>
         </li>
+        <li><a href="{{route('admin.parser.index')}}"><i class="fa fa-print"></i> <span>Парсер</span></a></li>
+        <li><a href="{{route('admin.products.index')}}"><i class="fa fa-cubes"></i> <span>Товары</span></a></li>
         <li><a href="{{route('admin.categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
         <li><a href="{{route('admin.tags.index')}}"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
         <li class="treeview">

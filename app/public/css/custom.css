@@ -22,3 +22,8 @@
 .inline-block{
     display: inline-block;
 }
+
+.img-small{
+    height: 150px !important;
+    width: auto !important;
+}

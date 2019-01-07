@@ -46,6 +46,7 @@
                 </div>
                 <hr>
             </form>
+            {{ $products->render() }} 
             @foreach($products as $product)
                 <div class="box box-default">
                     <div class="box-body">
@@ -81,9 +82,9 @@
                                     <p>В магазине:
                                         @if($variant->color)
                                             <strong>{{ $variant->color->name }}</strong>
-                                            <span class="label" style="background:{{ $variant->color->value }};border-radius:50%;border:1px solid #000">&nbsp;&nbsp;&nbsp;</span>
+                                            <span class="label" style="background:{{ $variant->color->value }};border-radius:35%">&nbsp;&nbsp;&nbsp;</span>
                                         @else
-                                            -
+                                           <button data-variant="{{ $variant->id }}" class="btn btn-xs btn-danger add-color" data-toggle="modal" data-target="#colors"><i class="fa fa-plus"></i> Добавить</button>
                                         @endif
                                     </p>
                                     <p>При парсинге: <strong>{{ $variant->color_value }}</strong></p>
@@ -142,6 +143,36 @@
         </div> 
         <!-- /.box-body -->
     </div>
+
+<!-- Modal -->
+<div id="colors" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Цвета</h4>
+      </div>
+      <div class="modal-body">
+            <div class="row">
+                @foreach($colors as $k=>$color)
+                    <div class="col-md-3 color-box" data-variant="" data-id="{{ $color->id }}">
+                        <p>
+                            <span class="label" style="background:{{ $color->value }};border-radius:35%">&nbsp;&nbsp;&nbsp;</span>
+                            <strong>{{ $color->name }}</strong>
+                        </p>
+                    </div>
+                @endforeach
+            </div>           
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary"><i class="fa fa-plus"></i> Добавить новый</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 @endsection
 
 @section('js')

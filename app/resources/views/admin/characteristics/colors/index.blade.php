@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{$color->name}}</td>
                         <td>{{$color->value}}</td>
-                        <td><span class="label" style="background:{{$color->value}};border-radius:50%;border:1px solid #000">&#160&#160&#160</span></td>
+                        <td><span class="label" style="background:{{$color->value}};border-radius:35%">&#160&#160&#160</span></td>
                         <td>
                             <a href="{{route('admin.characteristics.colors.edit', $color)}}" class="fa fa-pencil"></a> 
                             <form class="inline-block" method="POST" action="{{route('admin.characteristics.colors.destroy', $color)}}">

@@ -27,9 +27,13 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
     });
 
     Route::resource('products', 'ProductController');
-    Route::group(['prefix' => 'products', 'namespace' => 'Ajax'], function () {
-        Route::post('setsize', 'ProductController@setSize');   
-        Route::post('setcolor', 'ProductController@setColor');
+    Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax', 'as' => 'ajax.'], function () {
+        Route::group(['prefix' => 'product'], function () {
+            Route::post('setsize', 'ProductController@setSize');   
+            Route::post('setcolor', 'ProductController@setColor');
+        });
+
+        Route::post('color', 'ColorController@store')->name('color.store');
     });
     
     Route::group(['prefix' => 'parser', 'as' => 'parser.'], function () {

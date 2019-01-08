@@ -144,37 +144,79 @@
         <!-- /.box-body -->
     </div>
 
-<!-- Modal -->
 <div id="colors" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Цвета</h4>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    @foreach($colors as $k=>$color)
+                        <div class="col-md-4 color-box" data-variant="" data-id="{{ $color->id }}">
+                            <p>
+                                <span class="label" style="background:{{ $color->value }};border-radius:35%">&nbsp;&nbsp;&nbsp;</span>
+                                <strong>{{ $color->name }}</strong>
+                            </p>
+                        </div>
+                    @endforeach
+                </div>           
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#create-color"><i class="fa fa-plus"></i> Добавить новый</button>
+        </div>
+        </div>
+    
+    </div>
+</div>
+
+<div id="create-color" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Цвета</h4>
-      </div>
-      <div class="modal-body">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Добавить цвет</h4>
+        </div>
+        <div class="modal-body">
             <div class="row">
-                @foreach($colors as $k=>$color)
-                    <div class="col-md-3 color-box" data-variant="" data-id="{{ $color->id }}">
-                        <p>
-                            <span class="label" style="background:{{ $color->value }};border-radius:35%">&nbsp;&nbsp;&nbsp;</span>
-                            <strong>{{ $color->name }}</strong>
-                        </p>
+                <form id="add-color" action="{{route('admin.ajax.color.store')}}" method="POST">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger hidden">
+                            
+                        </div>
+                        <div class="form-group {{!$errors->has('name') ? : 'has-error'}}">
+                            <label for="name">Название*</label>
+                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="Название">       
+                        </div>
+                        <div class="form-group">
+                            <label for="value" >Значение*:</label>
+                            <input type="text" id="value" name='value' class="coloringpick" value="">
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Сохранить</button>                           
                     </div>
-                @endforeach
+                </form>
             </div>           
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary"><i class="fa fa-plus"></i> Добавить новый</button>
-      </div>
+        </div>
     </div>
 
   </div>
 </div>
+
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="http://www.tutsville.com/files/coloring_pick/assets/css/jquery.coloring-pick.min.css">
 @endsection
 
 @section('js')
+
+    <script src="/admin/js/colorpicker.js"></script>
+    <script>$('.coloringpick').coloringPick();</script>
+
     <script src="/admin/js/products.js"></script>
 @endsection

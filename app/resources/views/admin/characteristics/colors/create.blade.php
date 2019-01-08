@@ -18,14 +18,10 @@
                         <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" placeholder="Название">
                         <span class="help-block">{{$errors->first('name')}}</span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ !$errors->has('value')?:'has-error' }}">
                         <label for="value" >Значение*:</label>
-                        <div class="input-group my-colorpicker colorpicker-element">
-                            <input id="value" type="text" name="value" class="form-control">
-                            <div class="input-group-addon">
-                            <i style="background-color: rgb(33, 23, 23);"></i>
-                            </div>
-                        </div>
+                        <span class="help-block">{{$errors->first('value')}}</span>
+                        <input type="text" id="value" name='value' class="coloringpick" value="">
                     </div>
                 </div>
             </div>
@@ -40,15 +36,10 @@
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="/admin/plugins/colorpicker/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="http://www.tutsville.com/files/coloring_pick/assets/css/jquery.coloring-pick.min.css">
 @endsection
 
 @section('js')
-    <script src="/admin/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
-    <script>
-        $(function () {
-            //Colorpicker
-            $('.my-colorpicker').colorpicker();
-        })
-    </script>
+    <script src="/admin/js/colorpicker.js"></script>
+    <script>$('.coloringpick').coloringPick();</script>
 @endsection

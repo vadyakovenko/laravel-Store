@@ -61,27 +61,25 @@ $('body').on('submit', '#add-color', function(e) {
         errors = {},
         url = $(this).attr('action');
 
+    deleteErrors();
+
     if( $name.val() !== '') {
         data.name = $name.val();   
     } else {
-        errors.name = 'Укажите название!';
+        $name.closest('.form-group').addClass('has-error');
+        $name.next('span').text('Добавьте название!');
+        return false;
     }
 
     if( $value.val() !== '') {
         data.value = $value.val();   
     } else {
-        errors.value = 'Укажите значение!';
+        var $group = $value.closest('.form-group');
+        $group.addClass('has-error');
+        $group.find('.help-block').text('Укажите значение!');
+        return false;
     }
 
-    if( Object.keys(errors).length > 0 ){
-        var message = '';
-        for(var key in errors){
-            message += '<p>' + errors[key] + '</p>';
-        }
-        var $alert =  $(this).find('.alert-danger');
-        $alert.html(message);
-        $alert.removeClass('hidden');
-    }
 
     $.ajax({
         headers: {
@@ -91,26 +89,35 @@ $('body').on('submit', '#add-color', function(e) {
         type:'POST',
         data: data,
         success: function(res) {
-            var variantId = $('#colors .color-box').data('variant');
+            var variantId = $('#colors .color-box').attr('data-variant');
             var html = '<div class="col-md-4 color-box" data-variant="' + variantId + '" data-id="' + res.id + '"><p><span class="label" style="background:' + res.value + ';border-radius:35%">&nbsp;&nbsp;&nbsp;</span><strong> ' + res.name + '</strong></p></div>';
             $('#colors .modal-body .row').append(html);
             $('#create-color').modal('hide');
+            $name.val('');
         },
         error: function(res) {
-            var message = '',
-                errors = $.parseJSON(res.responseText).errors;
+            var errors = $.parseJSON(res.responseText).errors;
 
             if(errors.name) {
-                message += '<p>' + errors.name[0] + '</p>'; 
+                $name.closest('.form-group').addClass('has-error');
+                $name.next('span').text(errors.name[0]);
             }
 
             if(errors.value) {
-                message += '<p>' + errors.value[0] + '</p>'; 
+                var $group = $value.closest('.form-group');
+                $group.addClass('has-error');
+                $group.find('.help-block').text(errors.value[0]);
             }
-
-            var $alert =  $('#add-color .alert-danger');
-            $alert.html(message);
-            $alert.removeClass('hidden');
         }
     });   
 });
+
+$('#create-color').on('hidden.bs.modal', function() {
+    deleteErrors();
+});
+
+function deleteErrors(){
+    var $form = $('#add-color');
+    $form.find('.form-group').removeClass('has-error');
+    $form.find('span.help-block').text('');
+}

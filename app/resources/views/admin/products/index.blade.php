@@ -186,16 +186,15 @@
             <div class="row">
                 <form id="add-color" action="{{route('admin.ajax.color.store')}}" method="POST">
                     <div class="col-md-12">
-                        <div class="alert alert-danger hidden">
-                            
-                        </div>
-                        <div class="form-group {{!$errors->has('name') ? : 'has-error'}}">
+                        <div class="form-group">
                             <label for="name">Название*</label>
                             <input type="text" class="form-control" id="name" name="name" value="" placeholder="Название">       
+                            <span class="help-block"></span>                        
                         </div>
                         <div class="form-group">
                             <label for="value" >Значение*:</label>
                             <input type="text" id="value" name='value' class="coloringpick" value="">
+                            <span class="help-block"></span>
                         </div>
                         <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Сохранить</button>                           
                     </div>

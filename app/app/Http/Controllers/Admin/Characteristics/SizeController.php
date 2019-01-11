@@ -11,7 +11,7 @@ class SizeController extends Controller
 {
     public function index()
     {
-        $sizes = Size::all();
+        $sizes = Size::allBySort();
         return view('admin.characteristics.sizes.index', compact('sizes'));
     }
 
@@ -22,7 +22,7 @@ class SizeController extends Controller
 
     public function store(SizeCreateRequest $request)
     {
-        Size::create($request->validated());
+        Size::_append($request->validated());
         return redirect()->route('admin.characteristics.sizes.index')->with('success', 'Новый размер успешно добавлен!');
     }
 
@@ -40,8 +40,32 @@ class SizeController extends Controller
 
     public function destroy(Size $size)
     {
-        $size->delete();
+        $size->remove();
 
         return redirect()->route('admin.characteristics.sizes.index')->with('success', 'Цвет удален!');
+    }
+
+    public function up(Size $size)
+    {
+        $size->up();
+        return redirect()->route('admin.characteristics.sizes.index');
+    }
+
+    public function down(Size $size)
+    {
+        $size->down();
+        return redirect()->route('admin.characteristics.sizes.index');
+    }
+
+    public function first(Size $size)
+    {
+        $size->first();
+        return redirect()->route('admin.characteristics.sizes.index');
+    }
+
+    public function last(Size $size)
+    {
+        $size->last();
+        return redirect()->route('admin.characteristics.sizes.index');
     }
 }

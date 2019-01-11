@@ -28,10 +28,15 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
             Route::post('down', 'ColorController@down')->name('down');
             Route::post('first', 'ColorController@first')->name('first');
             Route::post('last', 'ColorController@last')->name('last');
-
         });
 
         Route::resource('sizes', 'SizeController');
+        Route::group(['prefix' => 'sizes/{size}', 'as' => 'sizes.'], function () {
+            Route::post('up', 'SizeController@up')->name('up');
+            Route::post('down', 'SizeController@down')->name('down');
+            Route::post('first', 'SizeController@first')->name('first');
+            Route::post('last', 'SizeController@last')->name('last');
+        });
     });
 
     Route::resource('products', 'ProductController');

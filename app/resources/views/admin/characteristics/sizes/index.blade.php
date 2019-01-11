@@ -18,6 +18,7 @@
             <thead>
             <tr>
                 <th>Значение</th>
+                <th>Сортировка</th>
                 <th>Действие</th>
             </tr>
             </thead>
@@ -25,6 +26,24 @@
                 @foreach($sizes as $size)
                     <tr>
                         <td>{{$size->value}}</td>
+                        <td>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.sizes.first', $size)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="Наверх"><i class="fa fa-angle-double-up"></i></button>
+                            </form>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.sizes.up', $size)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="На позицию вверх"><i class="fa fa-angle-up"></i></button>
+                            </form>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.sizes.down', $size)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="На позицию вниз"><i class="fa fa-angle-down"></i></button>
+                            </form>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.sizes.last', $size)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="Вниз"><i class="fa fa-angle-double-down"></i></button>
+                            </form>
+                        </td>
                         <td>
                             <a href="{{route('admin.characteristics.sizes.edit', $size)}}" class="fa fa-pencil"></a> 
                             <form class="inline-block" method="POST" action="{{route('admin.characteristics.sizes.destroy', $size)}}">

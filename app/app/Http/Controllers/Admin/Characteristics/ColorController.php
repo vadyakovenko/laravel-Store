@@ -6,12 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Entity\Store\Characteristics\Color;
 use App\Http\Requests\Store\Characteristics\Color\ColorCreateRequest;
 use App\Http\Requests\Store\Characteristics\Color\ColorUpdateRequest;
+use App\UseCases\Store\Characteristics\ColorService;
 
 class ColorController extends Controller
 {
+    private $color;
+
+    public function __construct(ColorService $color)
+    {
+        $this->color = $color;
+    }
+
     public function index()
     {
-        $colors = Color::all();
+        $colors = Color::allBySort();
         return view('admin.characteristics.colors.index', compact('colors'));
     }
 
@@ -22,7 +30,7 @@ class ColorController extends Controller
 
     public function store(ColorCreateRequest $request)
     {
-        Color::create($request->validated());
+        $this->color->create($request);
         return redirect()->route('admin.characteristics.colors.index')->with('success', 'Новый цвет успешно добавлен!');
     }
 
@@ -40,8 +48,32 @@ class ColorController extends Controller
 
     public function destroy(Color $color)
     {
-        $color->delete();
+        $this->color->delete($color);
 
         return redirect()->route('admin.characteristics.colors.index')->with('success', 'Цвет удален!');
+    }
+
+    public function up(Color $color)
+    {
+        $color->up();
+        return redirect()->route('admin.characteristics.colors.index');
+    }
+
+    public function down(Color $color)
+    {
+        $color->down();
+        return redirect()->route('admin.characteristics.colors.index');
+    }
+
+    public function first(Color $color)
+    {
+        $color->first();
+        return redirect()->route('admin.characteristics.colors.index');
+    }
+
+    public function last(Color $color)
+    {
+        $color->last();
+        return redirect()->route('admin.characteristics.colors.index');
     }
 }

@@ -23,6 +23,14 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
 
     Route::group(['prefix' => 'characteristics', 'as' => 'characteristics.', 'namespace' => 'Characteristics'], function () {
         Route::resource('colors', 'ColorController')->except('show');
+        Route::group(['prefix' => 'colors/{color}', 'as' => 'colors.'], function () {
+            Route::post('up', 'ColorController@up')->name('up');
+            Route::post('down', 'ColorController@down')->name('down');
+            Route::post('first', 'ColorController@first')->name('first');
+            Route::post('last', 'ColorController@last')->name('last');
+
+        });
+
         Route::resource('sizes', 'SizeController');
     });
 

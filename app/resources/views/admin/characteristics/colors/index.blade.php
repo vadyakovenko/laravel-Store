@@ -18,8 +18,8 @@
             <thead>
             <tr>
                 <th>Название</th>
-                <th>Значение</th>
                 <th>Вид</th>
+                <th>Сортировка</th>
                 <th>Действие</th>
             </tr>
             </thead>
@@ -27,8 +27,25 @@
                 @foreach($colors as $color)
                     <tr>
                         <td>{{$color->name}}</td>
-                        <td>{{$color->value}}</td>
                         <td><span class="label" style="background:{{$color->value}};border-radius:35%">&#160&#160&#160</span></td>
+                        <td>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.colors.first', $color)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="Наверх"><i class="fa fa-angle-double-up"></i></button>
+                            </form>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.colors.up', $color)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="На позицию вверх"><i class="fa fa-angle-up"></i></button>
+                            </form>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.colors.down', $color)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="На позицию вниз"><i class="fa fa-angle-down"></i></button>
+                            </form>
+                            <form class="inline-block" method="POST" action="{{route('admin.characteristics.colors.last', $color)}}">
+                                @csrf
+                                <button type="submit" class="move-btn" title="Вниз"><i class="fa fa-angle-double-down"></i></button>
+                            </form>
+                        </td>
                         <td>
                             <a href="{{route('admin.characteristics.colors.edit', $color)}}" class="fa fa-pencil"></a> 
                             <form class="inline-block" method="POST" action="{{route('admin.characteristics.colors.destroy', $color)}}">

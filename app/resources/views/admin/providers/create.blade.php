@@ -23,6 +23,11 @@
                         <input type="text" class="form-control" id="url" name="url" placeholder="Ссылка на сайт" value="{{old('url')}}">
                         <span class="help-block">{{$errors->first('url')}}</span>
                     </div>
+                    <div class="form-group {{!$errors->has('xml_url') ? : 'has-error'}}">
+                        <label for="xml_url">XML для выгрузки*</label>
+                        <input type="text" class="form-control" id="xml_url" name="xml_url" placeholder="xml" value="{{old('xml_url')}}">
+                        <span class="help-block">{{$errors->first('xml_url')}}</span>
+                    </div>
                     <div class="form-group">
                         <label for="conditions">Условия сотрудничества</label>
                         <textarea rows="5" name="conditions" id="conditions" class="form-control">{{old('conditions')}}</textarea>

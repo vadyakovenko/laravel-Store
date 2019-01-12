@@ -14,9 +14,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        $storeSizes = Size::all();
-        $colors = Color::all();
-        $products= Product::with('variants')->paginate(20);
+        $storeSizes = Size::allBySort();
+        $colors = Color::allBySort();
+        $products= Product::with('variants')->orderBy('id', 'desc')->paginate(20);
 
         return view('admin.products.index', compact('products', 'storeSizes', 'colors'));
     }

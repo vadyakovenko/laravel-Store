@@ -9,7 +9,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
 
     Route::resource('users', 'UserController');
 
-    Route::resource('providers', 'ProviderController')->except('show');
+    Route::resource('providers', 'ProviderController');
 
     Route::resource('categories', 'CategoryController');
     Route::group(['prefix' => 'categories/{category}', 'as' => 'categories.'], function () {
@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
         });
 
         Route::post('color', 'ColorController@store')->name('color.store');
+        Route::post('providers/attachcategory', 'ProviderController@attach');
     });
     
     Route::group(['prefix' => 'parser', 'as' => 'parser.'], function () {

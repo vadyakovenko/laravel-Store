@@ -19,6 +19,7 @@ class CreateProvidersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone', 10)->nullable();
             $table->string('url');
+            $table->string('xml_url');
             $table->text('conditions')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();

@@ -26,7 +26,8 @@ class ProviderRequest extends FormRequest
         return [
             'name' => ['required'],
             'url' => ['required', 'url'],
-            'email' => ['nullable', 'email']
+            'email' => ['nullable', 'email'],
+            'xml_url' => ['required', 'url']
         ];
     }
 }

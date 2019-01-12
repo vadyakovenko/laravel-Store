@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\Providers\ProviderRequest;
 use App\Entity\Store\Provider\Provider;
+use App\UseCases\Store\Providers\ProviderService;
+use App\Entity\Store\Category;
 
 class ProviderController extends Controller
 {
+    private $provider;
+
+    public function __construct(ProviderService $provider)
+    {
+        $this->provider = $provider;
+    }
+
     public function index()
     {
         $providers = Provider::paginate(20);
@@ -20,13 +29,17 @@ class ProviderController extends Controller
         return view('admin.providers.create');
     }
 
-
     public function store(ProviderRequest $request)
     {
-        if(!Provider::create($request->except('_token'))) {
-            throw new \RuntimeException('Error saving new provider!');
-        }
+        $this->provider->create($request);
         return redirect()->route('admin.providers.index')->with('success', 'Новый поставщик успешно добавлен!');
+    }
+
+    public function show(Provider $provider)
+    {
+        $providerCategories = $provider->categories()->orderBy('id', 'desc')->get();
+        $storeCategories = Category::treeWithDepth();
+        return view('admin.providers.show', compact('provider', 'providerCategories', 'storeCategories'));
     }
 
     public function edit(Provider $provider)
@@ -34,12 +47,9 @@ class ProviderController extends Controller
         return view('admin.providers.edit', ['provider' => $provider]);
     }
 
-
     public function update(ProviderRequest $request, Provider $provider)
     {
-        if(!$provider->update($request->except('_token'))) {
-            throw new \RuntimeException('Error updating provider!');
-        }
+        $provider->update($request->except('_token'));
         return redirect()->route('admin.providers.index')->with('success', 'Информиция о поставщике успешно обновлена!');
     }
 

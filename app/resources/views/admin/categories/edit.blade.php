@@ -44,7 +44,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{!$errors->has('seo_title') ? : 'has-error'}}">
                         <label for="seo_title">Title</label>
-                        <input required type="text" class="form-control" id="seo_title" name="seo_title" value="{{$category->meta->title}}" placeholder="Title">
+                        <input type="text" class="form-control" id="seo_title" name="seo_title" value="{{$category->meta->title}}" placeholder="Title">
                         <span class="help-block">{{$errors->first('seo_title')}}</span>
                     </div>
                     <div class="form-group {{!$errors->has('seo_description') ? : 'has-error'}}">

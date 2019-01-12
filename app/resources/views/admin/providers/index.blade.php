@@ -21,7 +21,8 @@
                 <th>Название</th>
                 <th>Email</th>
                 <th>Телефон</th>
-                <th>Ссылка</th>   
+                <th>Ссылка</th> 
+                <th>XML</th>  
                 <th>Условия</th>   
                 <th>Коментарий</th>            
                 <th>Действия</th>
@@ -31,10 +32,11 @@
                 @foreach($providers as $provider)
                     <tr>
                         <td>{{$provider->id}}</td>
-                        <td>{{$provider->name}}</td>
+                        <td><a href="{{ route('admin.providers.show', $provider) }}">{{$provider->name}}</a></td>
                         <td>{{$provider->email}}</td>
                         <td>{{$provider->phone}}</td>
-                        <td><a href="{{$provider->url}}">{{$provider->url}}</a></td>
+                        <td><a target="_blank" href="{{$provider->url}}">{{$provider->url}}</a></td>
+                        <td><a target="_blank" href="{{ $provider->xml_url }}"><i class="fa fa-file-text"></i></a></td>
                         <td>
                             @if(!empty($provider->conditions))
                                 <div class="btn-group">

@@ -15,7 +15,7 @@ class CategoryService
 
         $category = Category::create([
             'name' => $request['name'],
-            'slug' => $request['slug'],
+            'slug' => str_slug($request['slug']),
             'parent_id' => $request['parent_id'],
             'is_active' => (bool) $request['is_active'],
             'seo_json' => $meta->serialize(),
@@ -30,7 +30,7 @@ class CategoryService
 
         $category->update([
             'name' => $request['name'],
-            'slug' => $request['slug'],
+            'slug' => str_slug($request['slug']),
             'parent_id' => $request['parent_id'],
             'is_active' => (bool) $request['is_active'],
             'seo_json' => $meta->serialize(),

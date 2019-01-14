@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.providers.show', $provider) }}
+@endsection
+
 @section('content')
 
 <div class="box">
@@ -23,22 +27,24 @@
         </div>
     </div>
 </div>
-<div class="box">
-    <div class="box-body">
-        <div class="col-md-7">
-                <div class="panel-heading"><strong>Условия</strong></div>
-            <div class="panel panel-default">
-                {{$provider->conditions}}
+@if(!empty($provider->conditions) || !empty($provider->comment))
+    <div class="box">
+        <div class="box-body">
+            <div class="col-md-7">
+                    <div class="panel-heading"><strong>Условия</strong></div>
+                <div class="panel panel-default">
+                    {{ $provider->conditions }}
+                </div>
             </div>
-        </div>
-        <div class="col-md-5">
-            <div class="panel-heading"><strong>Коментарий</strong></div>
-            <div class="panel panel-default">
-                    {{$provider->comment}}
+            <div class="col-md-5">
+                <div class="panel-heading"><strong>Коментарий</strong></div>
+                <div class="panel panel-default">
+                        {{ $provider->comment }}
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 
 <div class="box">
     <div class="box-body">

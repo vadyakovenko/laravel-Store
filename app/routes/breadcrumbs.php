@@ -4,6 +4,8 @@ use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 use App\Entity\Store\Category;
 use App\Entity\Store\Provider\Provider;
 use App\Entity\Store\Tag;
+use App\Entity\Store\Product\Product;
+
 
 Breadcrumbs::for('dashboard', function (Crumbs $crumbs) {
     $crumbs->push('<i class="fa fa-dashboard"></i> Dashboard', route('admin.dashboard'));
@@ -33,6 +35,10 @@ Breadcrumbs::for('admin.categories.edit', function(Crumbs $crumbs, Category $cat
     $crumbs->push('Edit', route('admin.categories.edit', $category));
 });
 
+Breadcrumbs::for('admin.products.index', function(Crumbs $crumbs) {
+    $crumbs->parent('dashboard');
+    $crumbs->push('Products', route('admin.products.index'));
+});
 
 
 Breadcrumbs::for('admin.providers.index', function(Crumbs $crumbs) {
@@ -47,7 +53,7 @@ Breadcrumbs::for('admin.providers.create', function(Crumbs $crumbs) {
 
 Breadcrumbs::for('admin.providers.show', function(Crumbs $crumbs, Provider $provider) {
     $crumbs->parent('admin.providers.index');
-    $crumbs->push($provider->name, route('admin.providers.index'));
+    $crumbs->push($provider->name, route('admin.providers.show', $provider));
 });
 
 Breadcrumbs::for('admin.providers.edit', function(Crumbs $crumbs, Provider $provider) {

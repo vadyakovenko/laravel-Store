@@ -10,6 +10,8 @@ use App\Entity\Store\Product\ProductVariant;
 use App\Entity\Store\Characteristics\Color;
 use Illuminate\Http\Request;
 use App\Entity\Store\Product\Product;
+use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
+use App\Entity\Store\Category;
 
 
 class ProductService
@@ -32,6 +34,18 @@ class ProductService
         $color = Color::findOrFail($data['colorId']);
         $variant->color()->associate($color)->save();   
         return $variant;
+    }
+
+    public function setCategory(SetCategoryRequest $request)
+    {
+        $data = $request->validated();
+        $product = Product::findOrFail($data['productId']);
+        $category = Category::findOrFail($data['categoryId']);
+
+        $product->category()->associate($category)->save();
+
+        return $product;
+
     }
 
     public function getWithFilters(Request $request)

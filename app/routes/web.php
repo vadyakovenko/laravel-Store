@@ -42,8 +42,9 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
     Route::resource('products', 'ProductController');
     Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax', 'as' => 'ajax.'], function () {
         Route::group(['prefix' => 'product'], function () {
-            Route::post('setsize', 'ProductController@setSize');   
-            Route::post('setcolor', 'ProductController@setColor');
+            Route::post('set/size', 'ProductController@setSize');   
+            Route::post('set/color', 'ProductController@setColor');
+            Route::post('set/category', 'ProductController@setCategory');
         });
 
         Route::post('color', 'ColorController@store')->name('color.store');

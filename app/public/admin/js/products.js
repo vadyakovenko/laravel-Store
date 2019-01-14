@@ -10,7 +10,7 @@ $('body').on('change', 'select[name="size"]', function(e){
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: '/admin-panel/ajax/product/setsize',
+        url: '/admin-panel/ajax/product/set/size',
         type:'POST',
         data: data,
         success: function(res) {
@@ -39,7 +39,7 @@ $('body').on('click', '.color-box', function(){
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: '/admin-panel/ajax/product/setcolor',
+        url: '/admin-panel/ajax/product/set/color',
         type:'POST',
         data: data,
         success: function(res) {
@@ -110,6 +110,33 @@ $('body').on('submit', '#add-color', function(e) {
             }
         }
     });   
+});
+
+$('body').on('change', 'select[name="set-category"]', function(){
+    var data = {
+        'productId':$(this).attr('data-product'),
+        'categoryId':$(this).val(),
+    },
+    select = $(this);
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/admin-panel/ajax/product/set/category',
+        type:'POST',
+        data: data,
+        success: function(res) {
+            if(res.success) {
+                var html = '<p>Категория: <strong>' + res.categoryPath + '</strong></p>';
+                select.closest('.row')[0].outerHTML = html;
+            }
+        },
+        error: function(res) {
+            console.error(res);
+        }
+    });
+    
 });
 
 $('#create-color').on('hidden.bs.modal', function() {

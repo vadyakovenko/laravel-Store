@@ -89,7 +89,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-repeat"></i> Применить</button>
+                                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-check"></i> Применить</button>
+                                        <a href="{{ route('admin.products.index') }}" class="btn btn-danger pull-right" type="submit"><i class="fa fa-close"></i> Cбросить</a>
                                 </div>
                             </div>
                         </form>                      
@@ -106,8 +107,21 @@
                                 <p>ID: <strong>{{ $product->id }}</strong></p>
                                 <p>Название: <strong>{{ $product->name }}</strong></p>
                                 <p>Поставщик: <strong>{{ $product->provider->name }}</strong></p>
-                                <p>Категория: <strong>{{ $product->category ? $product->category->path() : '-' }}</strong></p>                          
-                                
+                                @if($product->category)
+                                    <p>Категория: <strong>{{ $product->category->path()}}</strong></p>                          
+                                @else
+                                <div class="row">
+                                    <div class="col-md-2 text-danger"><strong>Категория:</strong></div>
+                                    <div class="col-md-6">
+                                        <select data-product="{{ $product->id }}" name='set-category' class="form-control input-sm">
+                                            <option value="">-</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{ $category->path()}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>            
+                                @endif
                             </div>
                             <div class="col-md-6"></div>
                         </div>
@@ -116,7 +130,7 @@
                                 <h4>Варианты:</h4>
                             </div>
                         </div>
-                        @foreach($product->variants as $variant)
+                        @foreach($product->variants as $k=>$variant)
                             <div class="row">
                                 <div class="col-md-2 col-sm-3">
                                     <img src="{{ $variant->mainPhoto->path }}"  class="img-thumbnail">
@@ -155,7 +169,7 @@
                                                         @if($size->storeSize)
                                                             {{ $size->storeSize->value }}
                                                         @else
-                                                            <select class="form-controll" name="size" id="{{ $size->id }}">
+                                                            <select name="size" id="{{ $size->id }}">
                                                                 <option value="">-</option>
                                                                 @foreach($storeSizes as $item)
                                                                     <option value="{{ $item->id }}">{{ $item->value }}</option>

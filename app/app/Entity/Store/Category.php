@@ -28,4 +28,9 @@ class Category extends Model
     {
         return MetaData::unserialize($this->seo_json);
     }
+
+    public function path()
+    {
+        return ($this->parent ? $this->parent->path() . '/' : '') . $this->name; 
+    }
 }

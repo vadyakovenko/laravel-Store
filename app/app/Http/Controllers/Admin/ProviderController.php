@@ -37,9 +37,8 @@ class ProviderController extends Controller
 
     public function show(Provider $provider)
     {
-        $providerCategories = $provider->categories()->orderBy('id', 'desc')->get();
         $storeCategories = Category::treeWithDepth();
-        return view('admin.providers.show', compact('provider', 'providerCategories', 'storeCategories'));
+        return view('admin.providers.show', compact('provider', 'storeCategories'));
     }
 
     public function edit(Provider $provider)

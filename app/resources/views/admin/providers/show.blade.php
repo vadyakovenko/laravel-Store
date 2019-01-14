@@ -51,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($providerCategories as $k=>$category)
+                @foreach($provider->categories as $k=>$category)
                     <tr class=" {{ $category->store_category_id ? 'success' : 'danger' }}">
                         <td>{{ $k+1 }}</td>
 

@@ -8,17 +8,30 @@ use App\Entity\Store\Product\Product;
 use App\Entity\Store\Product\ProductVariant;
 use App\Entity\Store\Characteristics\Size;
 use App\Entity\Store\Characteristics\Color;
+use App\Entity\Store\Category;
+use App\Entity\Store\Provider\Provider;
+use App\UseCases\Store\ProductService;
 
 class ProductController extends Controller
 {
 
-    public function index()
+    private $product;
+
+    public function __construct(ProductService $product)
     {
+        $this->product = $product;
+    }
+
+    public function index(Request $request)
+    {
+        $requestData = $request->all();
+        $categories = Category::defaultOrder()->get();
+        $providers = Provider::all();
         $storeSizes = Size::allBySort();
         $colors = Color::allBySort();
-        $products= Product::with('variants')->orderBy('id', 'desc')->paginate(20);
+        $products= $this->product->getWithFilters($request);
 
-        return view('admin.products.index', compact('products', 'storeSizes', 'colors'));
+        return view('admin.products.index', compact('products', 'storeSizes', 'colors', 'sizes', 'categories', 'providers', 'requestData'));
     }
 
     /**

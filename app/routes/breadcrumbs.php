@@ -40,6 +40,10 @@ Breadcrumbs::for('admin.products.index', function(Crumbs $crumbs) {
     $crumbs->push('Products', route('admin.products.index'));
 });
 
+Breadcrumbs::for('admin.products.edit', function(Crumbs $crumbs, Product $product) {
+    $crumbs->parent('admin.products.index');
+    $crumbs->push($product->name, route('admin.products.edit', $product));
+});
 
 Breadcrumbs::for('admin.providers.index', function(Crumbs $crumbs) {
     $crumbs->parent('dashboard');

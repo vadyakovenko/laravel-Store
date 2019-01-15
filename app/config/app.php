@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Application Service Providers...

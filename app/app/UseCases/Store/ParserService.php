@@ -48,9 +48,11 @@ class ParserService
                 $productVariant =  ProductVariant::create([
                     'product_id' => $oldItem['product_id'],
                     'code' => $variantCode,
+                    'description' => $node->filter('description')->text(),
                     'color_value' => $parserColor,
                     'color_id' => $color ? $color->id : null,
-                    'price' => $node->filter('price')->text(),
+                    'price' => ceil((float)$node->filter('price')->text() * 1.2),
+                    'parser_price' => $node->filter('price')->text(),
                     'original_url' => $node->filter('url')->text(),
                     'quantity' => $node->filter('quantity')->text(),
                 ]);

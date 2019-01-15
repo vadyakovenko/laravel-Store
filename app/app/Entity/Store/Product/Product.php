@@ -11,7 +11,7 @@ use App\Entity\Store\Category;
 class Product extends Model
 {
 
-    protected $fillable = ['name', 'description', 'code', 'slug', 'provider_id', 'category_id', 'original_url'];
+    protected $fillable = ['name', 'code', 'slug', 'provider_id', 'category_id', 'original_url'];
 
     public function provider()
     {

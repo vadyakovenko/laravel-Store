@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
             Route::post('set/size', 'ProductController@setSize');   
             Route::post('set/color', 'ProductController@setColor');
             Route::post('set/category', 'ProductController@setCategory');
+            Route::post('update/name', 'ProductController@updateName');
         });
 
         Route::post('color', 'ColorController@store')->name('color.store');

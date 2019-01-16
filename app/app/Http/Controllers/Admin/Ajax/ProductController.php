@@ -8,6 +8,7 @@ use App\Http\Requests\Store\Products\Ajax\SetSizeRequest;
 use App\Http\Requests\Store\Products\Ajax\SetColorRequest;
 use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
 use App\UseCases\Store\ProductService;
+use App\Http\Requests\Store\Products\Ajax\UpdateNameRequest;
 
 class ProductController extends Controller
 {
@@ -35,5 +36,11 @@ class ProductController extends Controller
         $product =  $this->product->setCategory($request);
         return ['success' => true, 'categoryPath' => $product->category->path()];
 
+    }
+
+    public function updateName(UpdateNameRequest $request)
+    {
+        $this->product->updateName($request);
+        return ['success' => true];
     }
 }

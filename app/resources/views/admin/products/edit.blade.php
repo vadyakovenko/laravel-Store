@@ -12,14 +12,21 @@
                 <p>ID: <strong>{{ $product->id }}</strong> Поставщик: <strong>{{ $product->provider->name }}</strong></p>
                 <div class="row">
                     <div class="col-md-1">
-                        <p><strong>Название:</strong></p>
+                        <label for="name">Название:</label>
                     </div>
                     <div class="col-md-5">
-                        <input class="form-control input-sm" value="{{ $product->name }}" type="text">
+                        <div class="input-group input-group-sm">
+                            <input id="name" type="text" value="{{ $product->name }}" class="form-control">
+                            <span class="input-group-btn">
+                                <button id='save-name' data-product={{ $product->id }} type="button" disabled class="btn btn-info btn-flat">Сохранить</button>
+                            </span>
+                        </div>
                     </div>
-                    <div class="col-md-1"><p><strong>Категория:</strong></p></div>
+                    <div class="col-md-1">
+                        <label for="category">Категория:</label>
+                    </div>
                     <div class="col-md-5">
-                        <select data-product="{{ $product->id }}" name='set-category' class="form-control input-sm">
+                        <select data-product="{{ $product->id }}" id="category" name='set-category' class="form-control input-sm">
                             <option value="">-</option>
                             @foreach($categories as $category)
                                 <option {{ $product->category ? $product->category->id == $category->id ? 'selected' : '' : '' }} value="{{$category->id}}">{{ $category->path()}}</option>
@@ -28,20 +35,13 @@
                     </div>
                 </div>            
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <hr>
-                    <a href="{{ route('admin.products.index') }}" class="btn btn-default pull-left"><i class="fa fa-arrow-circle-left"></i> Назад</a>
-                    <button class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить изменения</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
 @if($product->variants)
     <div class="box">
-        <h4>Варианты:</h4>
+        <h4>&nbspВарианты:</h4>
         @foreach($product->variants as $k=>$variant)
     <div class="box">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -83,11 +83,12 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                    <h5><strong>Цвет</strong></h5>
+                                    <h5><strong>Цвет:</strong></h5>
                                     <p>В магазине:
                                         @if($variant->color)
                                             <strong>{{ $variant->color->name }}</strong>
                                             <span class="label" style="background:{{ $variant->color->value }};border-radius:35%">&nbsp;&nbsp;&nbsp;</span>
+                                            <button data-variant="{{ $variant->id }}" class="btn btn-xs btn-warning add-color" data-toggle="modal" data-target="#colors"><i class="fa  fa-pencil"></i> Изменить</button>
                                         @else
                                             <button data-variant="{{ $variant->id }}" class="btn btn-xs btn-danger add-color" data-toggle="modal" data-target="#colors"><i class="fa fa-plus"></i> Добавить</button>
                                         @endif
@@ -153,16 +154,18 @@
 @endforeach
     </div>
 
-    
 @endif
 
-
+@include('admin.products._color-modal')
 @endsection
 
 @section('js')
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script src="/admin/js/product-edit.js"></script>
     <script>
         $('textarea').ckeditor();
     </script>
+
+
 @endsection

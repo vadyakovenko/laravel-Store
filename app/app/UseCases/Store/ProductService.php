@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Entity\Store\Product\Product;
 use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
 use App\Entity\Store\Category;
+use App\Http\Requests\Store\Products\Ajax\UpdateNameRequest;
 
 
 class ProductService
@@ -46,6 +47,14 @@ class ProductService
 
         return $product;
 
+    }
+
+    public function updateName(UpdateNameRequest $request)
+    {
+        $data = $request->validated();
+        $product = Product::findOrFail($data['productId']);
+        $product->update(['name' => $data['name']]);
+        return $product;
     }
 
     public function getWithFilters(Request $request)

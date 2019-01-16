@@ -20,7 +20,7 @@ class ParserService
         $provider = Provider::find(1);
         $xml = file_get_contents($provider->xml_url);
         $crawler = new Crawler($xml);
-        $oldItem = ['code' => null, 'variantCode' => null];
+        $oldItem = ['code' => null, 'variantCode' => null, 'variantId' => null];
   
         $crawler->filter('yml_catalog shop offers offer')->reduce(function (Crawler $node) use (&$oldItem, $provider) {
             if($oldItem['code'] != explode('|', $node->attr('id'))[0]) {

@@ -9,6 +9,7 @@ use App\Http\Requests\Store\Products\Ajax\SetColorRequest;
 use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
 use App\UseCases\Store\ProductService;
 use App\Http\Requests\Store\Products\Ajax\UpdateNameRequest;
+use App\Http\Requests\Store\Products\Ajax\UpdatePriceRequest;
 
 class ProductController extends Controller
 {
@@ -41,6 +42,12 @@ class ProductController extends Controller
     public function updateName(UpdateNameRequest $request)
     {
         $this->product->updateName($request);
+        return ['success' => true];
+    }
+
+    public function updatePrice(UpdatePriceRequest $request)
+    {
+        $this->product->updatePrice($request);
         return ['success' => true];
     }
 }

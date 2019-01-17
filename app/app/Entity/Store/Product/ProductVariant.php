@@ -38,4 +38,9 @@ class ProductVariant extends Model
     {
         return $this->belongsTo(Color::class, 'color_id');
     }
+
+    public function getPriceAttribute($value)
+    {
+        return explode('.', $value)[0];
+    }
 }

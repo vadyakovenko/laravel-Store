@@ -18,7 +18,7 @@
                         <div class="input-group input-group-sm">
                             <input id="name" type="text" value="{{ $product->name }}" class="form-control">
                             <span class="input-group-btn">
-                                <button id='save-name' data-product={{ $product->id }} type="button" disabled class="btn btn-info btn-flat">Сохранить</button>
+                                <button id='save-name' data-product={{ $product->id }}  type="button" disabled class="btn btn-info btn-flat">Сохранить</button>
                             </span>
                         </div>
                     </div>
@@ -67,16 +67,19 @@
                                     <div class="col-md-3">
                                         <label class="weigh-medium" for="price{{ $variant->id }}">В магазине:</label>
                                     </div>
-                                    <div class=" col-md-2">
-                                        <input id="price{{ $variant->id }}" class="form-control input-sm text-large" value="{{ $variant->price }}" type="text">
+                                    <div class="col-md-3">
+                                        <input id="price{{ $variant->id }}" name="price"  class="form-control input-sm text-large" value="{{ $variant->price }}" type="number">
                                     </div>
                                     <div class="col-md-1">грн</div>
+                                    <div class="col-md-2">
+                                        <button id="change-price" data-variant="{{ $variant->id }}" data-price="" class="btn btn-success btn-sm hidden"><i class="fa fa-save"></i></button>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="weigh-medium" for="#price">При парсинге:</label>
                                     </div>
-                                    <div class="col-md-2">&nbsp&nbsp
+                                    <div class="col-md-3">&nbsp&nbsp
                                         {{$variant->parser_price}} 
                                     </div>
                                     <div class="col-md-1">грн</div>
@@ -130,6 +133,7 @@
                                 <textarea name="description" id="description{{ $variant->id }}" class="form-control" name="" id=""  rows="6">
                                     {{ $variant->description }}
                                 </textarea>
+                                <button class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить изменения</button>
                             </div>                          
                         </div>
                         <div class="col-md-6">
@@ -140,11 +144,6 @@
                                 </div>
         
                             @endforeach
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить изменения</button>
                         </div>
                     </div>
                 </div>

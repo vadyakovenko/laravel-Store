@@ -158,7 +158,7 @@ function deleteErrors(){
     $form.find('span.help-block').text('');
 }
 
-$('body').on('change', '#name', function(){
+$('#name').on('keypress', function(){
     $('#save-name').prop("disabled", false);
 });
 
@@ -186,6 +186,42 @@ $('body').on('click', '#save-name', function() {
         },
         error: function(res) {
             $('#save-name').text('Сохранить');
+            alert('Произошла неизвестная ошибка! Обновите странице у попробуйте еще раз!');
+            console.error(res);
+        }
+    });
+});
+
+$('input[name="price"]').on('keypress', function(){
+    var $button = $(this).closest('.row').find('#change-price');
+    $button.removeClass('hidden');
+    $button.attr('data-price', $(this).val());
+});
+
+$('input[name="price"]').on('change', function(){
+    var $button = $(this).closest('.row').find('#change-price');
+    $button.removeClass('hidden');
+    $button.attr('data-price', $(this).val());
+});
+
+$('body').on('click', '#change-price', function() {
+    var data = {
+        'variantId':$(this).attr('data-variant'),
+        'price':+$(this).attr('data-price'),
+    },
+    $button = $(this);
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/admin-panel/ajax/product/update/price',
+        type:'POST',
+        data: data,
+        success: function(res) {
+            $button.addClass('hidden');
+        },
+        error: function(res) {
+           // $('#save-name').text('Сохранить');
             alert('Произошла неизвестная ошибка! Обновите странице у попробуйте еще раз!');
             console.error(res);
         }

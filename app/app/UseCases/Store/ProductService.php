@@ -13,6 +13,7 @@ use App\Entity\Store\Product\Product;
 use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
 use App\Entity\Store\Category;
 use App\Http\Requests\Store\Products\Ajax\UpdateNameRequest;
+use App\Http\Requests\Store\Products\Ajax\UpdatePriceRequest;
 
 
 class ProductService
@@ -55,6 +56,14 @@ class ProductService
         $product = Product::findOrFail($data['productId']);
         $product->update(['name' => $data['name']]);
         return $product;
+    }
+
+    public function updatePrice(UpdatePriceRequest $request)
+    {
+        $data = $request->validated();
+        $variant = ProductVariant::findOrFail($data['variantId']);
+        $variant->update(['price' => $data['price']]);
+        return $variant;
     }
 
     public function getWithFilters(Request $request)

@@ -3,6 +3,7 @@ $(document).ready(function(){
 });
 
 $('textarea').ckeditor();
+$('.coloringpick').coloringPick();
 
 $('body').on('change', 'select[name="size"]', function(e){
     var data = {
@@ -34,7 +35,7 @@ $('body').on('change', 'select[name="size"]', function(e){
 });
 
 
-$('body').on('click', '.add-color', function(){
+$('body').on('click', '.add-color, .change-color', function(){
     $('#colors .color-box').attr('data-variant', $(this).data('variant'));
 });
 
@@ -54,7 +55,9 @@ $('body').on('click', '.color-box', function(){
         success: function(res) {
             $('#colors').modal('hide');
             var html = '<strong>'+res.name+'</strong> <span class="label" style="background:'+res.value+';border-radius:35%">&nbsp;&nbsp;&nbsp;</span>';
-            $('.add-color[data-variant="' + res.id + '"]')[0].outerHTML = html;
+            $('.add-color[data-variant="' + res.id + '"]').siblings('span.color-inform').html(html);
+            $('.add-color[data-variant="' + res.id + '"]').addClass('hidden');
+            $('.change-color[data-variant="' + res.id + '"]').removeClass('hidden');            
         },
         error: function(res) {
             console.error(res);

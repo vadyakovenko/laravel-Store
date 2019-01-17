@@ -2,6 +2,8 @@ $(document).ready(function(){
     $(window.location.hash).collapse('show');
 });
 
+$('textarea').ckeditor();
+
 $('body').on('change', 'select[name="size"]', function(e){
     var data = {
         'sizeId' : $(this).attr('id'),
@@ -215,6 +217,41 @@ $('body').on('click', '#change-price', function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url: '/admin-panel/ajax/product/update/price',
+        type:'POST',
+        data: data,
+        success: function(res) {
+            $button.addClass('hidden');
+        },
+        error: function(res) {
+            alert('Произошла неизвестная ошибка! Обновите странице у попробуйте еще раз!');
+            console.error(res);
+        }
+    });
+});
+
+for (var i in CKEDITOR.instances) {
+    CKEDITOR.instances[i].on('change', function() {
+        var $button = $('#' + $(this).attr('name')).siblings('button');
+        $button.removeClass('hidden');
+        $button.attr('data-description', $('#' + $(this).attr('name')).val());
+        
+    });
+}
+
+
+$('body').on('click', '#change-description', function() {
+    var data = {
+        'variantId':$(this).attr('data-variant'),
+        'description':$(this).attr('data-description'),
+    },    
+    $button = $(this);
+    console.log(data);
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/admin-panel/ajax/product/update/description',
         type:'POST',
         data: data,
         success: function(res) {

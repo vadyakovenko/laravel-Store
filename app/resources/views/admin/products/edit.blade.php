@@ -130,10 +130,10 @@
                                 @endif  
                             <div class="col-md-12">
                                 <label for="description{{ $variant->id }}">Описание:</label>
-                                <textarea name="description" id="description{{ $variant->id }}" class="form-control" name="" id=""  rows="6">
+                                <textarea name="description" id="description{{ $variant->id }}" class="form-control" name="description"  rows="6">
                                     {{ $variant->description }}
                                 </textarea>
-                                <button class="btn btn-success pull-right"><i class="fa fa-save"></i> Сохранить изменения</button>
+                                <button id="change-description" data-variant="{{ $variant->id }}" data-description=""  class="btn btn-success pull-right hidden"><i class="fa fa-save"></i> Сохранить изменения</button>
                             </div>                          
                         </div>
                         <div class="col-md-6">
@@ -162,9 +162,4 @@
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
     <script src="/admin/js/product-edit.js"></script>
-    <script>
-        $('textarea').ckeditor();
-    </script>
-
-
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
 use App\UseCases\Store\ProductService;
 use App\Http\Requests\Store\Products\Ajax\UpdateNameRequest;
 use App\Http\Requests\Store\Products\Ajax\UpdatePriceRequest;
+use App\Http\Requests\Store\Products\Ajax\UpdateDescriptionRequest;
 
 class ProductController extends Controller
 {
@@ -48,6 +49,12 @@ class ProductController extends Controller
     public function updatePrice(UpdatePriceRequest $request)
     {
         $this->product->updatePrice($request);
+        return ['success' => true];
+    }
+
+    public function updateDescription(UpdateDescriptionRequest $request)
+    {
+        $this->product->updateDescription($request);
         return ['success' => true];
     }
 }

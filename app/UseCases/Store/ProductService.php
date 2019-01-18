@@ -81,7 +81,14 @@ class ProductService
         $products = Product::select('products.*');
 
         if(array_key_exists('categories', $filtres)) {
-            $products = $products->whereIn('products.category_id', $filtres['categories']);
+            $categories = Category::whereIn('id', $filtres['categories'])->get();
+            $categoriesWithChildren = [];
+
+            foreach ($categories as $category) {
+                $categoriesWithChildren = array_merge($category->descendantsId(), $categoriesWithChildren);
+            }
+            
+            $products = $products->whereIn('products.category_id',  $categoriesWithChildren);
         }
 
         if(array_key_exists('providers', $filtres)) {

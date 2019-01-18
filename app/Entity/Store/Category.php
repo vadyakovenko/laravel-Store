@@ -33,4 +33,9 @@ class Category extends Model
     {
         return ($this->parent ? $this->parent->path() . '/' : '') . $this->name; 
     }
+
+    public function descendantsId():array
+    {        
+        return $this->descendants()->pluck('id')->toArray();
+    }
 }

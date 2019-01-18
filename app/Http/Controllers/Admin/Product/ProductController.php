@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $requestData = $request->all();
+        $requestData = $request->except('page');
         $categories = Category::defaultOrder()->get();
         $providers = Provider::all();
         $storeSizes = Size::allBySort();

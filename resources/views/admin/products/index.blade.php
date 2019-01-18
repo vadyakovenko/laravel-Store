@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        {{ $products->render() }} 
+        {{ $products->appends($requestData)->render() }} 
         @foreach($products as $product)
             <div class="box box-default">
                 <div class="box-body">
@@ -204,7 +204,7 @@
                 </div>
             </div>
         @endforeach
-        {{ $products->render() }} 
+        {{ $products->appends($requestData)->render() }} 
     </div> 
     <!-- /.box-body -->
 </div>

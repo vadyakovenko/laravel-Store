@@ -167,6 +167,10 @@ $('#name').on('keypress', function(){
     $('#save-name').prop("disabled", false);
 });
 
+$('#name').on('change', function(){
+    $('#save-name').prop("disabled", false);
+});
+
 $('body').on('click', '#save-name', function() {
     var data = {
         'productId':$(this).attr('data-product'),
@@ -248,8 +252,7 @@ $('body').on('click', '#change-description', function() {
         'description':$(this).attr('data-description'),
     },    
     $button = $(this);
-    console.log(data);
-
+    snowing
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

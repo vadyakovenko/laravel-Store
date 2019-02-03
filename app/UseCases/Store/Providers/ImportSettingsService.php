@@ -42,7 +42,6 @@ class ImportSettingsService
     public function update(ImportSettingsRequest $request, ImportSettings $importSettings)
     {
         $data = $request->except('_token');
-
         $importSettings = $importSettings->update([
             'import_method' => $data['import_method'],
             
@@ -60,6 +59,6 @@ class ImportSettingsService
             'photo' =>       SimpleField::create( new Selector($data['photo_selector'], $data['photo_selector_type']) )->list(),
         ]);
 
-        return $settings;
+        return $importSettings;
     }
 }

@@ -7,7 +7,7 @@ class SeparatorField
     public static function createField(string $type, array $arguments)
     {
         if(preg_match( '#separator_explode$#', $type)) {
-            return ExplodeSeparatorField::create(new Selector($arguments[$type . '_selector'], $arguments[$type . '_selector_type']), $arguments[$type . '_delimiter'], (int)$arguments[$type . '_limit']);
+            return ExplodeSeparatorField::create(new Selector($arguments[$type . '_selector'], $arguments[$type . '_selector_type']), $arguments[$type . '_delimiter'], (int) $arguments[$type . '_limit']);
         }
 
         if(preg_match( '#separator_selector$#', $type)) {

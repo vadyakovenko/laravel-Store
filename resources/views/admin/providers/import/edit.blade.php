@@ -1,9 +1,16 @@
 @extends('admin.layouts.app')
 
-@section('content'){{ dump($settings) }}
-<form action="{{ route('admin.providers.import.update', [$provider, $importSettings]) }}" method="POST">
+@section('content')
+@if($errors->count())
+    <div class="box">
+        <div class="alert alert-danger">
+            {{ $errors->first() }}
+        </div>
+    </div>
+@endif
+<form action="{{ route('admin.providers.import.update', [$provider->id,  $provider->settings->id]) }}" method="POST">
+    @method('PUT')    
     @csrf
-    @method('PUT')
         <div class="box">
             <div class="box-body">
                 <div class="row">
@@ -14,7 +21,7 @@
                                 @foreach($importTypes as $k=>$type)
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="import-method" value="{{ $type }}" {{ $settings['import_method'] == $type ? 'checked' : '' }} >
+                                            <input type="radio" name="import_method" value="{{ $type }}" {{ $settings['import_method'] == $type ? 'checked' : '' }} >
                                             <strong>{{$type}}</strong>
                                         </label>
                                     </div>
@@ -46,13 +53,13 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['selector'] : "" }}" name="product_separator_selector" placeholder="Name selector">
+                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['selector'] : "" }}" name="product_separator_selector_selector" placeholder="Name selector">
                             </div>                
                             <div class="col-md-2">
                                 <div class="radio">
                                     @foreach($selectorTypes as $type)
                                         <label>
-                                            <input type="radio" name="product_separator_selector_type" value="{{ $type}}" {{  $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['type'] == $type ? 'checked' : '' : '' }}>
+                                            <input type="radio" name="product_separator_selector_selector_type" value="{{ $type}}" {{  $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['type'] == $type ? 'checked' : '' : '' }}>
                                             <strong>{{ $type }}</strong>
                                         </label>
                                     @endforeach
@@ -70,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['selector'] : '' }}" name="explode_selector" placeholder="Selector">
+                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['selector'] : '' }}" name="product_separator_explode_selector" placeholder="Selector">
                             </div> 
                             <div class="col-md-2">
                                 <div class="radio">
@@ -168,13 +175,13 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['selector'] : "" }}" name="variant_separator_selector" placeholder="Name selector">
+                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['selector'] : "" }}" name="variant_separator_selector_selector" placeholder="Name selector">
                             </div>                
                             <div class="col-md-2">
                                 <div class="radio">
                                     @foreach($selectorTypes as $k=>$type)
                                         <label>
-                                            <input type="radio" name="variant_separator_selector_type" value="{{ $type}}" {{  $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['type'] == $type ? 'checked' : '' : '' }}>
+                                            <input type="radio" name="variant_separator_selector_selector_type" value="{{ $type}}" {{  $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['type'] == $type ? 'checked' : '' : '' }}>
                                             <strong>{{ $type }}</strong>
                                         </label>
                                     @endforeach
@@ -192,7 +199,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['selector'] : '' }}" name="explode_selector" placeholder="Selector">
+                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['selector'] : '' }}" name="variant_separator_explode_selector" placeholder="Selector">
                             </div> 
                             <div class="col-md-2">
                                 <div class="radio">
@@ -208,7 +215,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-6 control-label" for="main">Delimiter</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control input-sm" name="variant_separator_explode-delimiter" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['delimiter'] : '' }}" id="main" placeholder="">
+                                        <input type="text" class="form-control input-sm" name="variant_separator_explode_delimiter" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['delimiter'] : '' }}" id="main" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +223,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="main">Limit</label>
                                     <div class="col-sm-6">
-                                        <input type="number" class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['limit'] : '' }}" name="variant_separator_explode-limit" id="main" placeholder="">
+                                        <input type="number" class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['limit'] : '' }}" name="variant_separator_explode_limit" id="main" placeholder="">
                                     </div>
                                 </div>
                             </div>

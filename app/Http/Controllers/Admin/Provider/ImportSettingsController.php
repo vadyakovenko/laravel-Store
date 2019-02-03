@@ -35,7 +35,7 @@ class ImportSettingsController extends Controller
     public function store(ImportSettingsRequest $request, Provider $provider)
     {
         $this->service->store($request, $provider);
-        return redirect()->route('admin.providers.show', $provider);
+        return redirect()->route('admin.providers.show', $provider)->with('success', 'Сохранение настроек импорта прошло успешно!');
     }
 
     public function edit(Provider $provider, ImportSettings $importSettings)
@@ -49,9 +49,9 @@ class ImportSettingsController extends Controller
         return view('admin.providers.import.edit', compact('provider','importSettings', 'importTypes', 'selectorTypes', 'settings'));
     }
 
-    public function update(ImportSettingsRequest $request, Provider $provider, ImportSettings $importSettings)
+    public function update(ImportSettingsRequest $request, Provider $provider, $importSettings)
     {       
-        $this->service->store($request, $importSettings);
-        return 1;
+        $this->service->update($request, ImportSettings::findOrFail($importSettings));
+        return redirect()->route('admin.providers.show', $provider)->with('success', 'Обновление настроек импорта прошло успешно!');
     }
 }

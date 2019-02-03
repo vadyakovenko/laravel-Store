@@ -8,15 +8,13 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::resource('users', 'UserController');
-
-    Route::resource('providers', 'ProviderController');
-    // Route::group(['prefix' => 'providers/{$provider}', 'as' => 'providers.'], function () {
-    //     Route::get('parser/chose')->name('parser.chose');
-    //     Route::post('parser/chose');
-    //     Route::get('parser/{type}/show');
-    //     Route::post('parser/{type}/show');
-    //     Route::put('parser/{type}/show');
-    // });
+    
+    Route::group(['namespace' => 'Provider'], function () {
+        Route::resource('providers', 'ProviderController');
+        Route::group(['prefix' => '/providers/{provider}/', 'as' => 'providers.'], function () {
+            Route::resource('import', 'ImportSettingsController')->except(['index']);
+        });
+    });
 
     Route::resource('categories', 'CategoryController');
     Route::group(['prefix' => 'categories/{category}', 'as' => 'categories.'], function () {

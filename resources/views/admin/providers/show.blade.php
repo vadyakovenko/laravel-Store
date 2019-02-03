@@ -13,10 +13,11 @@
             <div class="panel-heading">            
                 <a href="{{route('admin.providers.index')}}" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Назад</a>
                 <a href={{route('admin.providers.edit', $provider)}} type="submit" class="btn btn-success"><i class="fa fa fa-pencil"></i> Изменить</a>
+                <a href={{route('admin.providers.import.create', $provider)}} type="submit" class="btn btn-warning"><i class="fa fa fa-toggle-on"></i> Настройка импорта</a>
                 <form class="inline-block" method="POST" action="{{route('admin.providers.destroy', $provider)}}">
                     @csrf
                     @method('delete')
-                    <button type="submit" onclick="return confirm('Действительно удалить?')" class="btn btn-danger">Удалить</button>
+                    <button type="submit" onclick="return confirm('Действительно удалить?')" class="btn btn-danger"> <i class="fa fa-remove"></i> Удалить</button>
                 </form>
             </div>                   
             <ul class="list-group">

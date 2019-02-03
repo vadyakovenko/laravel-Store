@@ -5,6 +5,7 @@ namespace App\Entity\Store\Provider;
 use Illuminate\Database\Eloquent\Model;
 use App\Entity\Store\Provider\Category;
 use App\Entity\Store\Product\Product;
+use App\Entity\Store\Provider\Import\ImportSettings;
 
 class Provider extends Model
 {
@@ -18,5 +19,10 @@ class Provider extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function settings()
+    {
+        return $this->hasOne(ImportSettings::class);
     }
 }

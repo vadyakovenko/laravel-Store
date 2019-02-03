@@ -1,0 +1,52 @@
+-----------color-size---------
+
+ ---Product---
+| name        |
+| provider_id |
+| category_id |
+|-------------|                 separator (product)
+        \                       separator (product variant)
+    --Product variant--
+    |  product_id      | 
+    |  code            | 
+    |  description     |
+    |  color_value     |
+    |  color_id        |
+    |  price           |
+    |  parser_price    |
+    |  original_url    |
+    |  quantity        |
+    |---------------------------------------|
+        |    --Photo--     |    --Size--    |
+        |   variation_id   |  variation_id  |
+        |   path           |  parser_value  |
+        |------------------|  quantity      |
+                           |  size_id       |
+                           |----------------|
+
+
+                           -----------color-sizes---------
+
+ ---Product---
+| name        |
+| provider_id |
+| category_id |
+|-------------|                 separator (product)
+        \                       
+    --Product variant--
+    |  product_id      | 
+    |  code            | 
+    |  description     |
+    |  color_value     |
+    |  color_id        |
+    |  price           |
+    |  parser_price    |
+    |  original_url    |
+    |  quantity        |
+    |---------------------------------------|
+        |    --Photo--     |    --Size--    |
+        |   variation_id   |  variation_id  |
+        |   path           |  parser_value  |
+        |------------------|  quantity      |
+                           |  size_id       |
+                           |----------------|

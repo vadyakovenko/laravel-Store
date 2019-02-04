@@ -56,3 +56,16 @@
 .text-large {
 font-size: 110%;
 }
+
+.blue-panel {
+    background: #367fa9;
+    color: #fff;
+}
+
+.blue-panel input:not([type=checkbox]):not([type=radio]) {
+    height: 25px !important;
+    padding: 3px 8px !important;
+    font-size: 14px !important;
+    border-radius: 15px !important;
+    margin-bottom: 2px !important;
+}

@@ -8,14 +8,19 @@ class Selector
     public const ATTR_TYPE = 'attr';
 
     private $selector;
+    private $attribute;
     private $type;
 
-    public function __construct(string $selector, string $type)
+    public function __construct(string $selector, string $type, $attr)
     {
         $this->selector = $selector;
 
-        if ($type == self::ATTR_TYPE || $type == self::TAG_TYPE ) {
+        if ( $type == self::TAG_TYPE ) {
             $this->type = $type;
+            $this->attribute = null;
+        } elseif( $type == self::ATTR_TYPE  && !empty($attr)) {
+            $this->type = $type;
+            $this->attribute = $attr;
         } else {
             throw new \DomainException('Invalid selector type');
         }
@@ -24,6 +29,11 @@ class Selector
     public function selector()
     {
         return $this->selector;
+    }
+
+    public function attribute()
+    {
+        return $this->attribute;
     }
 
     public function type()

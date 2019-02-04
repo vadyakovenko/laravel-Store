@@ -8,6 +8,7 @@ class SimpleField extends BaseField
     {
         $this->chunks['selector'] = $selector->selector();
         $this->chunks['type'] = $selector->type();
+        $this->chunks['attribute'] = $selector->attribute();
     }
 
     public static function create(Selector $selector)

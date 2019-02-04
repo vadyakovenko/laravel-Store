@@ -10,6 +10,7 @@ class BaseField
     {
         $this->chunks['selector'] = $selector->selector();
         $this->chunks['type'] = $selector->type();
+        $this->chunks['attr'] = $selector->attribute();
     }
 
     public function list()

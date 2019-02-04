@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.providers.importSettings.update', $provider, $importSettings) }}
+@endsection
+
 @section('content')
 @if($errors->count())
     <div class="box">

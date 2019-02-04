@@ -5,6 +5,7 @@ use App\Entity\Store\Category;
 use App\Entity\Store\Provider\Provider;
 use App\Entity\Store\Tag;
 use App\Entity\Store\Product\Product;
+use App\Entity\Store\Provider\Import\ImportSettings;
 
 
 Breadcrumbs::for('dashboard', function (Crumbs $crumbs) {
@@ -58,6 +59,16 @@ Breadcrumbs::for('admin.providers.create', function(Crumbs $crumbs) {
 Breadcrumbs::for('admin.providers.show', function(Crumbs $crumbs, Provider $provider) {
     $crumbs->parent('admin.providers.index');
     $crumbs->push($provider->name, route('admin.providers.show', $provider));
+});
+
+Breadcrumbs::for('admin.providers.importSettings.create', function(Crumbs $crumbs, Provider $provider) {
+    $crumbs->parent('admin.providers.show', $provider);
+    $crumbs->push('Create import settings', route('admin.providers.import.create', $provider));
+});
+
+Breadcrumbs::for('admin.providers.importSettings.update', function(Crumbs $crumbs, Provider $provider, ImportSettings $importSettings) {
+    $crumbs->parent('admin.providers.show', $provider);
+    $crumbs->push('Edit import settings', route('admin.providers.import.edit', [$provider, $importSettings]));
 });
 
 Breadcrumbs::for('admin.providers.edit', function(Crumbs $crumbs, Provider $provider) {

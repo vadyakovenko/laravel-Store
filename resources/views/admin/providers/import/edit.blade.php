@@ -6,7 +6,7 @@
 
 @section('content')
 @if($errors->count())
-    <div class="box">
+    <div class="box blue-panel">
         <div class="alert alert-danger">
             {{ $errors->first() }}
         </div>
@@ -15,7 +15,7 @@
 <form action="{{ route('admin.providers.import.update', [$provider->id,  $provider->settings->id]) }}" method="POST">
     @method('PUT')    
     @csrf
-        <div class="box">
+        <div class="box blue-panel">
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-4">
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="box">
+        <div class="box blue-panel">
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -57,9 +57,10 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['selector'] : "" }}" name="product_separator_selector_selector" placeholder="Name selector">
+                                <input type="text" require class="form-control input-sm" value="{{ $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['selector'] : "" }}" name="product_separator_selector_selector" placeholder="Name selector">
+                                <input type="text" class="form-control input-sm"  value="{{ $settings['separator_product']['separator_type'] == 'selector_separator' ? $settings['separator_product']['attr'] : "" }}" name="product_separator_selector_selector_attr" placeholder="Attribute">                            
                             </div>                
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <div class="radio">
                                     @foreach($selectorTypes as $type)
                                         <label>
@@ -80,10 +81,11 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['selector'] : '' }}" name="product_separator_explode_selector" placeholder="Selector">
+                            <div class="col-md-4">
+                                <input type="text" require class="form-control input-sm" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['selector'] : '' }}" name="product_separator_explode_selector" placeholder="Selector">
+                                <input type="text" class="form-control input-sm" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['attr'] : '' }}" name="product_separator_explode_selector_attr" placeholder="Attribute">                      
                             </div> 
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <div class="radio">
                                     @foreach($selectorTypes as $type)
                                         <label>
@@ -93,18 +95,18 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label" for="main">Delimiter</label>
-                                    <div class="col-sm-6">
+                                    <label class="col-sm-4 control-label" for="main">Delimiter</label>
+                                    <div class="col-sm-5">
                                         <input type="text" class="form-control input-sm" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['delimiter'] : '' }}" name="product_separator_explode_delimiter" id="main" placeholder="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="main">Limit</label>
-                                    <div class="col-sm-6">
+                                    <label class="col-sm-4 control-label" for="main">Limit</label>
+                                    <div class="col-sm-7">
                                         <input type="number" class="form-control input-sm" value="{{ $settings['separator_product']['separator_type'] == 'explode_separator' ? $settings['separator_product']['limit'] : '' }}" name="product_separator_explode_limit" id="main" placeholder="">
                                     </div>
                                 </div>
@@ -127,10 +129,13 @@
                                         <input type="text" class="form-control input-sm" name="product_separator_substractor_main_selector" id="main" placeholder="Main selector"
                                             value="{{ $settings['separator_product']['separator_type'] == 'substructor_separator' ? $settings['separator_product']['main_selector'] : '' }}"                                         
                                         >
+                                        <input type="text" class="form-control input-sm" name="product_separator_substractor_main_selector_attr" placeholder="Attribute"
+                                            value="{{ $settings['separator_product']['separator_type'] == 'substructor_separator' ? $settings['separator_product']['main_selector_attr'] : '' }}"                                         
+                                        >
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 @foreach($selectorTypes as $k=>$type)
                                     <label>
                                         <input type="radio" name="product_separator_substractor_main_selector_type" value="{{ $type}}" {{ $k==0 ? 'checked' : '' }}
@@ -147,10 +152,13 @@
                                         <input type="text" class="form-control input-sm" name="product_separator_substractor_cut_selector" id="cut" placeholder="Cut selector"
                                             value="{{ $settings['separator_product']['separator_type'] == 'substructor_separator' ? $settings['separator_product']['cut_selector'] : '' }}"                                         
                                         >
+                                        <input type="text" class="form-control input-sm" name="product_separator_substractor_cut_selector_attr" placeholder="Attribute"
+                                            value="{{ $settings['separator_product']['separator_type'] == 'substructor_separator' ? $settings['separator_product']['cut_selector_attr'] : '' }}"                                         
+                                        >
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 @foreach($selectorTypes as $k=>$type)
                                     <label>
                                         <input type="radio" name="product_separator_substractor_cut_selector_type" value="{{ $type}}" {{ $k==0 ? 'checked' : '' }}
@@ -179,11 +187,12 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['selector'] : "" }}" name="variant_separator_selector_selector" placeholder="Name selector">
+                                <input type="text" require class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['selector'] : "" }}" name="variant_separator_selector_selector" placeholder="Name selector">
+                                <input type="text" class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['attr'] : "" }}" name="variant_separator_selector_selector_attr" placeholder="Attribute">                            
                             </div>                
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <div class="radio">
-                                    @foreach($selectorTypes as $k=>$type)
+                                    @foreach($selectorTypes as $type)
                                         <label>
                                             <input type="radio" name="variant_separator_selector_selector_type" value="{{ $type}}" {{  $settings['separator_variant']['separator_type'] == 'selector_separator' ? $settings['separator_variant']['type'] == $type ? 'checked' : '' : '' }}>
                                             <strong>{{ $type }}</strong>
@@ -202,10 +211,11 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['selector'] : '' }}" name="variant_separator_explode_selector" placeholder="Selector">
+                            <div class="col-md-4">
+                                <input type="text" require class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['selector'] : '' }}" name="variant_separator_explode_selector" placeholder="Selector">
+                                <input type="text" class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['attr'] : '' }}" name="variant_separator_explode_selector_attr" placeholder="Attribute">                            
                             </div> 
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <div class="radio">
                                     @foreach($selectorTypes as $k=>$type)
                                         <label>
@@ -215,18 +225,18 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label" for="main">Delimiter</label>
-                                    <div class="col-sm-6">
+                                    <label class="col-sm-4 control-label" for="main">Delimiter</label>
+                                    <div class="col-sm-5">
                                         <input type="text" class="form-control input-sm" name="variant_separator_explode_delimiter" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['delimiter'] : '' }}" id="main" placeholder="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="main">Limit</label>
-                                    <div class="col-sm-6">
+                                    <label class="col-sm-4 control-label" for="main">Limit</label>
+                                    <div class="col-sm-7">
                                         <input type="number" class="form-control input-sm" value="{{ $settings['separator_variant']['separator_type'] == 'explode_separator' ? $settings['separator_variant']['limit'] : '' }}" name="variant_separator_explode_limit" id="main" placeholder="">
                                     </div>
                                 </div>
@@ -250,11 +260,15 @@
                                             value="{{ $settings['separator_variant']['separator_type'] == 'substructor_separator' ? $settings['separator_variant']['main_selector'] : '' }}" 
                                             name="variant_separator_substractor_main_selector" id="main" placeholder="Main selector"
                                         >
+                                        <input type="text" class="form-control input-sm" 
+                                            value="{{ $settings['separator_variant']['separator_type'] == 'substructor_separator' ? $settings['separator_variant']['main_selector_attr'] : '' }}" 
+                                            name="variant_separator_substractor_main_selector_attr" placeholder="Attribute"
+                                        >
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                @foreach($selectorTypes as $k=>$type)
+                            <div class="col-md-1">
+                                @foreach($selectorTypes as $type)
                                     <label>
                                         <input type="radio" name="variant_separator_substractor_main_selector_type" value="{{ $type}}" 
                                             {{ $settings['separator_variant']['separator_type'] == 'substructor_separator' ? $settings['separator_variant']['main_selector_type'] == $type ? 'checked' : '' : '' }}
@@ -271,11 +285,15 @@
                                             value="{{ $settings['separator_variant']['separator_type'] == 'substructor_separator' ? $settings['separator_variant']['cut_selector'] : '' }}" 
                                             name="variant_separator_substractor_cut_selector" id="cut" placeholder="Cut selector"
                                         >
+                                        <input type="text" class="form-control input-sm" 
+                                            value="{{ $settings['separator_variant']['separator_type'] == 'substructor_separator' ? $settings['separator_variant']['cut_selector_attr'] : '' }}" 
+                                            name="variant_separator_substractor_cut_selector_attr" placeholder="Attribute"
+                                        >
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                @foreach($selectorTypes as $k=>$type)
+                            <div class="col-md-1">
+                                @foreach($selectorTypes as $type)
                                     <label>
                                         <input type="radio" name="variant_separator_substractor_cut_selector_type" value="{{ $type}}" {{ $k==0 ? 'checked' : '' }}
                                             {{ $settings['separator_variant']['separator_type'] == 'substructor_separator' ? $settings['separator_variant']['cut_selector_type'] == $type ? 'checked' : '' : '' }}
@@ -289,16 +307,17 @@
                 </div>
             </div>
         </div>
-        <div class="box">   
+        <div class="box blue-panel">   
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="name">Product</label>
                             <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['product'] ? $settings['product']['selector'] : '' }}" name="product_selector" placeholder="Product selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['product'] ? $settings['product']['attr'] : '' }}" name="product_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $type)
                                 <label>
@@ -310,13 +329,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['name'] ? $settings['name']['selector'] : '' }}" name="name_selector" placeholder="Name selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['name'] ? $settings['name']['attr'] : '' }}" name="name_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $k=>$type)
                                 <label>
@@ -328,13 +348,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="code">Code</label>
                             <input type="text" require class="form-control input-sm" id="code" value="{{ $settings['code'] ? $settings['code']['selector'] : '' }}" name="code_selector" placeholder="Code selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['code'] ? $settings['code']['attr'] : '' }}" name="code_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                                 @foreach($selectorTypes as $k=>$type)
                                 <label>
@@ -346,13 +367,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="text" require class="form-control input-sm" id="price" value="{{ $settings['price'] ? $settings['price']['selector'] : '' }}" name="price_selector" placeholder="Price selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['price'] ? $settings['price']['attr'] : '' }}" name="price_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-2"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $k=>$type)
                                 <label>
@@ -362,22 +384,23 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="col-md-1"><br>
-                        <label for="markup"><strong>Наценка:</strong></label>
+                    <div class="col-md-1"><br><br>
+                        <label for="markup"><strong>Markup:</strong></label>
                     </div>
-                    <div class="col-md-1"><br>
+                    <div class="col-md-1"><br><br>
                         <input type="number" id="markup" value="{{ $settings['price'] ? $settings['price']['markup'] : '' }}" name="markup" class="form-control input-sm" value="10" placeholder="%">
                     </div>
-                    <div class="col-md-1"><br><strong>(%)</strong></div>
+                    <div class="col-md-1"><br><br><strong>(%)</strong></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" require class="form-control input-sm" id="description" value="{{ $settings['description'] ? $settings['description']['selector'] : '' }}" name="description_selector" placeholder="Description selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['description'] ? $settings['description']['attr'] : '' }}" name="description_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $type)
                                 <label>
@@ -389,13 +412,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="quantity">Quantity</label>
                             <input type="text" require class="form-control input-sm" id="quantity"  value="{{ $settings['quantity'] ? $settings['quantity']['selector'] : '' }}" name="quantity_selector" placeholder="Quantity selector">
+                            <input type="text" class="form-control input-sm"  value="{{ $settings['quantity'] ? $settings['quantity']['attr'] : '' }}" name="quantity_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $k=>$type)
                                 <label>
@@ -407,13 +431,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="color">Color</label>
                             <input type="text" require class="form-control input-sm" id="color" value="{{ $settings['color'] ? $settings['color']['selector'] : '' }}" name="color_selector" placeholder="Color selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['color'] ? $settings['color']['attr'] : '' }}" name="color_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $type)
                                 <label>
@@ -425,13 +450,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="size">Size</label>
                             <input type="text" require class="form-control input-sm" id="size" value="{{ $settings['size'] ? $settings['size']['size_selector'] : '' }}" name="size_selector" placeholder="Size selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['size'] ? $settings['size']['size_attr'] : '' }}" name="size_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $k=>$type)
                                 <label>
@@ -443,13 +469,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="size">Size quantity</label>
                             <input type="text" require class="form-control input-sm" id="size" value="{{ $settings['size'] ? $settings['size']['quantity_selector'] : '' }}" name="size_quantity_selector" placeholder="Size quantity selector">
+                            <input type="text" class="form-control input-sm" value="{{ $settings['size'] ? $settings['size']['quantity_attr'] : '' }}" name="size_quantity_selector_attr" placeholder="Attribute">                        
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $type)
                                 <label>
@@ -461,13 +488,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="photo">Photo</label>
-                            <input type="text" require class="form-control input-sm" id="photo" value="{{ $settings['photo'] ? $settings['photo']['selector'] : '' }}" name="photo_selector" placeholder="Photo selector">
+                            <input type="text" require class="form-control input-sm" id="photo" value="{{ $settings['photo'] ? $settings['photo']['selector'] : '' }}" name="photo_selector" placeholder="Photo selector">                        
+                            <input type="text" class="form-control input-sm" value="{{ $settings['photo'] ? $settings['photo']['attr'] : '' }}" name="photo_selector_attr" placeholder="Attribute">
                         </div>
                     </div>
-                    <div class="col-md-6"><br>
+                    <div class="col-md-1"><br>
                         <div class="radio">
                             @foreach($selectorTypes as $type)
                                 <label>
@@ -480,7 +508,7 @@
                 </div>
             </div>
         </div>
-        <div class="box">
+        <div class="box blue-panel">
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-1">
@@ -489,7 +517,7 @@
                             Назад
                         </a>
                     </div>
-                    <div class="col-md-1 pull-right">
+                    <div class="col-md-1">
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-save"></i>
                             Save

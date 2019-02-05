@@ -8,9 +8,9 @@ class SizeField extends BaseField
     {
         $this->chunks['size_selector'] = $size->selector();
         $this->chunks['size_type'] = $size->type();
-        $this->chunks['size_attribute'] = $size->attribute();
+        $this->chunks['size_attr'] = $size->attribute();
         $this->chunks['quantity_selector'] = $quantity->selector();
-        $this->chunks['quantity_attribute'] = $quantity->attribute();
+        $this->chunks['quantity_attr'] = $quantity->attribute();
         $this->chunks['quantity_type'] = $quantity->type();
     }
 

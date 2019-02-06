@@ -10,6 +10,7 @@ use App\Entity\Store\Product\ProductVariant;
 use App\Entity\Store\Characteristics\Color;
 use Illuminate\Http\Request;
 use App\Entity\Store\Product\Product;
+use App\Entity\Store\Provider\Provider;
 use App\Http\Requests\Store\Products\Ajax\SetCategoryRequest;
 use App\Entity\Store\Category;
 use App\Http\Requests\Store\Products\Ajax\UpdateNameRequest;
@@ -144,5 +145,33 @@ class ProductService
                     ->paginate('20');
 
         return $products;
+    }
+
+    public function deleteByProvider(Provider $provider)
+    {
+        $products = Product::where('provider_id', $provider->id)->get();
+
+        \DB::transaction(function () use ($products) {
+            foreach($products as $product) {
+
+                foreach($product->variants as $variant){
+                   
+                    foreach($variant->photos as $photo) {
+                        $photo->delete();
+                    }
+
+                    foreach($variant->sizes as $size){
+                        $size->delete();
+                    }
+
+                    $variant->delete();
+
+                }
+
+                $product->delete();
+            }
+        });
+
+        return true;
     }
 }

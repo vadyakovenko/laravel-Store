@@ -32,6 +32,6 @@ class ImportController extends Controller
             echo $e->getMessage();die;
         }
 
-        return 'OK!';
+        return redirect()->route('admin.products.index');
     }
 }

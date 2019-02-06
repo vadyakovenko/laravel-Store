@@ -24,7 +24,8 @@
                     <span class="input-group-btn">
                         <button class="btn btn-danger" type="submit"><i class="fa fa-remove"></i> Delete</button>
                     </span>
-                    <select class="selectpicker form-control" name="providerId" data-live-search="true" title="Please select a provider">
+                    <select class="form-control" name="providerId" data-live-search="true" title="Please select a provider">
+                       <option value=""></option>
                         @foreach($providers as $provider)
                             <option value="{{ $provider->id }}">{{ $provider->name }}</option>
                         @endforeach

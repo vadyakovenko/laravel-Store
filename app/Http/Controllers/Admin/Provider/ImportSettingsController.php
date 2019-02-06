@@ -23,8 +23,8 @@ class ImportSettingsController extends Controller
 
     public function create(Provider $provider)
     {
-        if($provider->settings) {
-            return redirect()->route('admin.providers.import.edit', [$provider, $provider->settings]);
+        if($provider->importSettings) {
+            return redirect()->route('admin.providers.import.edit', [$provider, $provider->importSettings]);
         }
 
         $selectorTypes = Selector::typesList();
@@ -40,12 +40,12 @@ class ImportSettingsController extends Controller
 
     public function edit(Provider $provider, ImportSettings $importSettings)
     {
-        if(!$provider->settings) { 
+        if(!$provider->importSettings) { 
             return redirect()->route('admin.providers.import.create', $provider);
         }
         $selectorTypes = Selector::typesList();
         $importTypes = ImportSettings::importsList();
-        $settings = $provider->settings()->first(); 
+        $settings = $provider->importSettings()->first(); 
         return view('admin.providers.import.edit', compact('provider','importSettings', 'importTypes', 'selectorTypes', 'settings'));
     }
 

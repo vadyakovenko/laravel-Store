@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Parser\StartRequest;
-use App\UseCases\Store\ParserService;
+use App\UseCases\Store\Import\ImportService;
 use App\Entity\Store\Provider\Provider;
 
 class ImportController extends Controller
 {
-    private $parser;
+    private $import;
 
-    public function __construct(ParserService $parser)
+    public function __construct(ImportService $import)
     {
-        $this->parser = $parser;
+        $this->import = $import;
     }
 
     public function index()
@@ -23,8 +22,16 @@ class ImportController extends Controller
         return view('admin.parser.index', compact('providers'));
     }
 
-    public function start()
+    public function start(Provider $provider)
     {
-        $this->parser->start();
+        try {
+            $this->import->start($provider);
+        } catch(\RuntimeException $e) {
+            echo $e->getMessage();die;
+        } catch(\DomainException $e) {
+            echo $e->getMessage();die;
+        }
+
+        return 'OK!';
     }
 }

@@ -101,4 +101,32 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function deleteByProvider(Request $request)
+    {
+        $provider = Provider::findOrFail($request->get('providerId'));
+        $products = Product::where('provider_id', $provider->id)->get();
+
+        \DB::transaction(function () use ($products) {
+            foreach($products as $product) {
+
+                foreach($product->variants as $variant){
+                    foreach($variant->photos as $photo) {
+                        $photo->delete();
+                    }
+
+                    foreach($variant->sizes as $size){
+                        $size->delete();
+                    }
+
+                    $variant->delete();
+
+                }
+                $product->delete();
+            }
+        });
+
+        return redirect()->route('admin.products.index')->with('success', 'Товары поставщика ' . $provider->name . ' полностью удалены!');
+
+    }
 }

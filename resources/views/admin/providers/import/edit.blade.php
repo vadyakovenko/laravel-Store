@@ -12,7 +12,7 @@
         </div>
     </div>
 @endif
-<form action="{{ route('admin.providers.import.update', [$provider->id,  $provider->settings->id]) }}" method="POST">
+<form action="{{ route('admin.providers.import.update', [$provider->id,  $provider->importSettings->id]) }}" method="POST">
     @method('PUT')    
     @csrf
         <div class="box blue-panel">

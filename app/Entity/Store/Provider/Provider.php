@@ -21,7 +21,7 @@ class Provider extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function settings()
+    public function importSettings()
     {
         return $this->hasOne(ImportSettings::class);
     }

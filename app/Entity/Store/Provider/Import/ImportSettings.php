@@ -38,11 +38,11 @@ class ImportSettings extends Model
                             'photo' => 'array'
                         ];
 
-    public const Type1 = 'color-size';
-    public const Type2 = 'color-sizes';
+    public const COLOR_SIZE_TYPE = 'color-size';
+    public const COLOR_SIZES_TYPE = 'color-sizes';
 
     public static function importsList()
     {
-        return [self::Type1, self::Type2];
+        return [self::COLOR_SIZE_TYPE, self::COLOR_SIZES_TYPE];
     }
 }

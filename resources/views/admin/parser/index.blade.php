@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-2">
                         <span>Status: 
-                            @if($provider->settings)
+                            @if($provider->importSettings)
                                 <i class="label label-success">Ready</i> 
                             @else
                                 <i class="label label-warning">Wait</i> 
@@ -30,8 +30,9 @@
                         <a class="btn btn-default" href="{{ $provider->xml_url }}" target="_blank"><i class="fa fa-file-text"></i> XML</a>
                         <a class="btn btn-default" href="/" target="_blank"><i class="fa  fa-file"></i> Log</a>
                     </div>
-
-                        <button class="btn btn-success btn-rigth-radius pull-right" {{ $provider->settings ? '' : 'disabled' }}><i class="fa fa-rocket"></i> Start import</button>
+                    <form method="POST" action="{{ route('admin.imports.start', $provider) }}"> @csrf
+                        <button type="submit" class="btn btn-success btn-rigth-radius pull-right" {{ $provider->importSettings ? '' : 'disabled' }}><i class="fa fa-rocket"></i> Start import</button>
+                    </form>
                     <div class="clearfix"></div>
                 </div>
             @endforeach

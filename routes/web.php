@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
     });
 
     Route::resource('products', 'Product\ProductController');
+    Route::delete('products/provider/delete', 'Product\ProductController@deleteByProvider')->name('products.provider.delete');
     Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax', 'as' => 'ajax.'], function () {
         Route::group(['prefix' => 'product'], function () {
             Route::post('set/size', 'ProductController@setSize');   

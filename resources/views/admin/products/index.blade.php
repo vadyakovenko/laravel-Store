@@ -14,8 +14,25 @@
         <div class="form-group">
         <a href=" " class="btn btn-success"><i class="fa fa-plus"></i> Добавить</a>
         <a class="btn btn-primary"  data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-controls="collapse1">
-                <i class="fa fa-filter"></i> Фильтры
-            </a>
+            <i class="fa fa-filter"></i> Фильтры
+        </a>
+        <div class="col-lg-3">
+            <form action="{{ route('admin.products.provider.delete') }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <div class="input-group my-group"> 
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="submit"><i class="fa fa-remove"></i> Delete</button>
+                    </span>
+                    <select class="selectpicker form-control" name="providerId" data-live-search="true" title="Please select a provider">
+                        @foreach($providers as $provider)
+                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                        @endforeach
+                    </select> 
+                </div>
+            </form>
+        </div>
+
         </div>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-primary">

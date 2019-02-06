@@ -19,6 +19,12 @@
     color: #337ab7;
 }
 
+.btn-rigth-radius {
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
+
+}
+
 .inline-block{
     display: inline-block;
 }
@@ -68,4 +74,19 @@ font-size: 110%;
     font-size: 14px !important;
     border-radius: 15px !important;
     margin-bottom: 2px !important;
+}
+
+
+.wrap {
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+    padding-left: 5px;
+    background: #3c8dbc;
+    border-radius: 17px;
+    margin-bottom: 10px;
+}
+
+.wrap span {
+    line-height: 2.2;
 }

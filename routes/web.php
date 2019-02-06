@@ -59,8 +59,8 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.', 'namespace' => 'Admin
         Route::post('providers/attachcategory', 'ProviderController@attach');
     });
     
-    Route::group(['prefix' => 'parser', 'as' => 'parser.'], function () {
-        Route::get('/', 'ParserController@index')->name('index');
-        Route::get('/start', 'ParserController@start')->name('start');
+    Route::group(['prefix' => 'imports', 'as' => 'imports.'], function () {
+        Route::get('/', 'ImportController@index')->name('index');
+        Route::post('/start/{provider}', 'ImportController@start')->name('start');
     });
 });

@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Parser\StartRequest;
 use App\UseCases\Store\ParserService;
+use App\Entity\Store\Provider\Provider;
 
-class ParserController extends Controller
+class ImportController extends Controller
 {
     private $parser;
 
@@ -18,7 +19,8 @@ class ParserController extends Controller
 
     public function index()
     {
-        return view('admin.parser.index');
+        $providers = Provider::all();
+        return view('admin.parser.index', compact('providers'));
     }
 
     public function start()

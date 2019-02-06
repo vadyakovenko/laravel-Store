@@ -100,3 +100,8 @@ Breadcrumbs::for('admin.users.index', function(Crumbs $crumbs) {
     $crumbs->parent('dashboard');
     $crumbs->push('Users', route('admin.users.index'));
 });
+
+Breadcrumbs::for('admin.imports.index', function(Crumbs $crumbs) {
+    $crumbs->parent('dashboard');
+    $crumbs->push('Импорт товаров', route('admin.imports.index'));
+});

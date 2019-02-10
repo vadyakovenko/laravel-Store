@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Parser;
+namespace App\Modules\Parser;
 
 use Symfony\Component\DomCrawler\Crawler;
 use App\Entity\Store\Product\Product;
@@ -12,18 +12,24 @@ use App\Entity\Store\Characteristics\Size as StoreSize;
 use App\Entity\Store\Characteristics\Color;
 use App\Entity\Store\Category as StoreCategory;
 use App\Entity\Store\Provider\Category;
+use App\Entity\Store\Provider\Import\Fields\BaseField;
 
 class ColorSizeParser extends BaseParser
 {
     public function parse()
     {
+
+        dd($this->settings->product);
+
+
         ini_set('max_execution_time', 0);
+    
 
         $xml = file_get_contents(public_path("timeofstyle.xml"));
         $crawler = new Crawler($xml);
         $oldItem = ['code' => null, 'variantCode' => null, 'variantId' => null];
   
-        $crawler->filter('offer')->reduce(function (Crawler $node) use (&$oldItem) {
+        $crawler->filter($settings->product->selector)->reduce(function (Crawler $node) use (&$oldItem) {
 
             if($oldItem['code'] != explode('|', $node->attr('id'))[0]) {
 
@@ -92,6 +98,6 @@ class ColorSizeParser extends BaseParser
             
         });
 
-
     }
+
 }

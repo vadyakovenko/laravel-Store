@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Parser;
+namespace App\Modules\Parser;
 
 use App\Entity\Store\Provider\Provider;
 

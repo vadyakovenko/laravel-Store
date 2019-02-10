@@ -3,7 +3,7 @@
 namespace App\UseCases\Store\Import;
 
 use App\Entity\Store\Provider\Provider;
-use App\Services\Parser\Builder;
+use App\Modules\Parser\Builder;
 
 
 class ImportService 

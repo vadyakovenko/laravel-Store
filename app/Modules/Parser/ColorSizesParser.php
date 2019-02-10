@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Parser;
+namespace App\Modules\Parser;
 
 class ColorSizeParser extends BaseParser
 {

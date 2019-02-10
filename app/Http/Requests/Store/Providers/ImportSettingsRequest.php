@@ -67,12 +67,8 @@ class ImportSettingsRequest extends FormRequest
 
 
             'product_selector' =>           ['required'],
-            'product_selector_type' =>      ['required', Rule::in(Selector::typesList())],
-            'product_selector_attr' =>      ['required_if:product_selector_type,' . Selector::ATTR_TYPE],
-            
+           
             'name_selector' =>              ['required'],
-            'name_selector_type' =>         ['required', Rule::in(Selector::typesList())],
-            'name_selector_attr' =>         ['required_if:name_selector_type,' . Selector::ATTR_TYPE],
             
             'code_selector' =>              ['required'],
             'code_selector_type' =>         ['required', Rule::in(Selector::typesList())],
@@ -83,9 +79,7 @@ class ImportSettingsRequest extends FormRequest
             'price_selector_attr' =>        ['required_if:price_selector_type,' . Selector::ATTR_TYPE],
             
             'description_selector' =>       ['required'],
-            'description_selector_type' =>  ['required', Rule::in(Selector::typesList())],
-            'description_selector_attr' =>  ['required_if:description_selector_type,' . Selector::ATTR_TYPE],
-            
+           
             'quantity_selector' =>          ['required'],
             'quantity_selector_type' =>     ['required', Rule::in(Selector::typesList())],
             'quantity_selector_attr' =>     ['required_if:quantity_selector_type,' . Selector::ATTR_TYPE],

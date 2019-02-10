@@ -314,17 +314,6 @@
                         <div class="form-group">
                             <label for="name">Product</label>
                             <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['product'] ? $settings['product']['selector'] : '' }}" name="product_selector" placeholder="Product selector">
-                            <input type="text" class="form-control input-sm" value="{{ $settings['product'] ? $settings['product']['attr'] : '' }}" name="product_selector_attr" placeholder="Attribute">                        
-                        </div>
-                    </div>
-                    <div class="col-md-1"><br>
-                        <div class="radio">
-                            @foreach($selectorTypes as $type)
-                                <label>
-                                    <input type="radio" name="product_selector_type" value="{{ $type}}" {{ $settings['product'] ? $settings['product']['type'] == $type ? 'checked' : '' : '' }}>
-                                    <strong>{{ $type }}</strong>
-                                </label>
-                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -333,17 +322,6 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" require class="form-control input-sm" id="name" value="{{ $settings['name'] ? $settings['name']['selector'] : '' }}" name="name_selector" placeholder="Name selector">
-                            <input type="text" class="form-control input-sm" value="{{ $settings['name'] ? $settings['name']['attr'] : '' }}" name="name_selector_attr" placeholder="Attribute">                        
-                        </div>
-                    </div>
-                    <div class="col-md-1"><br>
-                        <div class="radio">
-                            @foreach($selectorTypes as $k=>$type)
-                                <label>
-                                    <input type="radio" name="name_selector_type" value="{{ $type}}" {{ $settings['name'] ? $settings['name']['type'] == $type ? 'checked' : '' : '' }}>
-                                    <strong>{{ $type }}</strong>
-                                </label>
-                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -397,17 +375,6 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" require class="form-control input-sm" id="description" value="{{ $settings['description'] ? $settings['description']['selector'] : '' }}" name="description_selector" placeholder="Description selector">
-                            <input type="text" class="form-control input-sm" value="{{ $settings['description'] ? $settings['description']['attr'] : '' }}" name="description_selector_attr" placeholder="Attribute">                        
-                        </div>
-                    </div>
-                    <div class="col-md-1"><br>
-                        <div class="radio">
-                            @foreach($selectorTypes as $type)
-                                <label>
-                                    <input type="radio" name="description_selector_type"  value="{{ $type}}" {{ $settings['description'] ? $settings['description']['type'] == $type ? 'checked' : '' : '' }}>
-                                    <strong>{{ $type }}</strong>
-                                </label>
-                            @endforeach
                         </div>
                     </div>
                 </div>

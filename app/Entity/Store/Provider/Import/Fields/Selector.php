@@ -11,7 +11,7 @@ class Selector
     private $attribute;
     private $type;
 
-    public function __construct(string $selector, string $type, $attr)
+    public function __construct(string $selector, string $type = self::TAG_TYPE, $attr = null)
     {
         $this->selector = $selector;
 

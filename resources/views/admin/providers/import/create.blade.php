@@ -286,17 +286,6 @@
                         <div class="form-group">
                             <label for="name">Product</label>
                             <input type="text" required class="form-control input-sm" value="{{ old('product_selector') }}" id="name" name="product_selector" placeholder="Product selector">
-                            <input type="text" class="form-control input-sm" value="{{ old('product_selector_attr') }}" name="product_selector_attr" placeholder="Product attribute">                        
-                        </div>
-                    </div>
-                    <div class="col-md-1"><br>
-                        <div class="radio">
-                            @foreach($selectorTypes as $type)
-                                <label>
-                                    <input type="radio" name="product_selector_type" value="{{ $type}}" {{ old('product_selector_type') == $type ? 'checked' : '' }}>
-                                    <strong>{{ $type }}</strong>
-                                </label>
-                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -305,17 +294,6 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" required class="form-control input-sm" value="{{ old('name_selector') }}" id="name" name="name_selector" placeholder="Name selector">
-                            <input type="text" class="form-control input-sm" value="{{ old('name_selector_attr') }}" name="name_selector_attr" placeholder="Attribute">                        
-                        </div>
-                    </div>
-                    <div class="col-md-1"><br>
-                        <div class="radio">
-                            @foreach($selectorTypes as $type)
-                                <label>
-                                    <input type="radio" name="name_selector_type" value="{{ $type}}" {{ old('name_selector_type') == $type ? 'checked' : '' }}>
-                                    <strong>{{ $type }}</strong>
-                                </label>
-                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -369,17 +347,6 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" required class="form-control input-sm" value="{{ old('description_selector') }}" id="description" name="description_selector" placeholder="Description selector">                       
-                            <input type="text" class="form-control input-sm" value="{{ old('description_selector_attr') }}" name="description_selector_attr" placeholder="Attribute">
-                        </div>
-                    </div>
-                    <div class="col-md-1"><br>
-                        <div class="radio">
-                            @foreach($selectorTypes as $type)
-                                <label>
-                                    <input type="radio" name="description_selector_type" value="{{ $type}}" {{ old('description_selector_type') == $type ? 'checked' : '' }}>
-                                    <strong>{{ $type }}</strong>
-                                </label>
-                            @endforeach
                         </div>
                     </div>
                 </div>
